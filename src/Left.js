@@ -17,7 +17,9 @@ class LeftButton extends React.Component {
     var hero = this.props.hero
     for(var j=hero[1];j>=0;j--){
       console.log(maze)
-      if(maze[hero[0]][j-1].wall===true){
+      if(maze[hero[0]][j-1].wall===true || 
+        ((maze[hero[0]][j].options.includes('U') || maze[hero[0]][j].options.includes('D')) && 
+        (maze[hero[0]][j].options.includes('L') || maze[hero[0]][j].options.includes('R')) && j!==hero[1])){
         break;
       }
     }
@@ -31,8 +33,18 @@ class LeftButton extends React.Component {
 
   handleAgree = () => {
     console.log("I agree!");
-    this.props.setHero([this.props.hero[0],this.state.pos]);
     this.handleClose();
+
+    var hero =this.props.hero;
+    var pos = this.state.pos;
+    var vis = this.props.vis
+    for(let i=-1;i<=1;i++){
+      for(let j=hero[1];j>=pos-1;j--){
+        vis[hero[0]+i][j] = true;
+      }
+    }
+    this.props.setHero([this.props.hero[0],this.state.pos]);
+    this.props.setvis(vis)
   };
   handleDisagree = () => {
     console.log("I do not agree.");

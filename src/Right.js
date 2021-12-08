@@ -12,7 +12,7 @@ class RightButton extends React.Component {
     open: false,
     pos : this.props.hero[1]
   };
-
+  
   handleClickOpen = () => {
     this.setState({ open: true });
     var hero = this.props.hero
@@ -20,7 +20,9 @@ class RightButton extends React.Component {
       if(j===26){
         break;
       }
-      if(maze[hero[0]][j+1].wall===true){
+      if(maze[hero[0]][j+1].wall===true || 
+        ((maze[hero[0]][j].options.includes('U') || maze[hero[0]][j].options.includes('D')) && 
+        (maze[hero[0]][j].options.includes('L') || maze[hero[0]][j].options.includes('R')) && j!==hero[1])){
         break;
       }
     }
@@ -35,8 +37,17 @@ class RightButton extends React.Component {
   handleAgree = () => {
     console.log("I agree!");
     this.handleClose();
-    if(this.state.pos === 26) alert('You Win')
+    var hero =this.props.hero;
+    var pos = this.state.pos;
+    var vis = this.props.vis
+    for(let i=-1;i<=1;i++){
+      for(let j=hero[1];j<=pos+1;j++){
+        vis[hero[0]+i][j] = true;
+      }
+    }
     this.props.setHero([this.props.hero[0],this.state.pos]);
+    this.props.setvis(vis)
+    if(this.state.pos === 26) alert('You Win')
   };
   handleDisagree = () => {
     console.log("I do not agree.");

@@ -125,3 +125,8 @@
   display:flex;
   flex-direction:row;
 }
+
+#maze div div.invisible, #maze div div.nubbin.invisible, #maze div div.door.exit {
+  background-color: #000000;
+  background-size: 0.5em 0.5em;
+}
