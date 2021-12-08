@@ -34,9 +34,9 @@ class RightButton extends React.Component {
 
   handleAgree = () => {
     console.log("I agree!");
+    this.handleClose();
     if(this.state.pos === 26) alert('You Win')
     this.props.setHero([this.props.hero[0],this.state.pos]);
-    this.handleClose();
   };
   handleDisagree = () => {
     console.log("I do not agree.");
