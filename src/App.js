@@ -20,7 +20,7 @@ function App() {
         setVisibility(v)
       }
     }
-  })
+  },[visiblity])
   
   return (
     <div id="maze_container">
