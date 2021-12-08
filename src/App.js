@@ -7,10 +7,10 @@ import {
 import Login from './Login'
 import Maze from './Maze'
 import { useState, useEffect } from 'react';
-import app from './firebase'
+import { app } from './firebase'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 function App() {
-  
+  console.log(app)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
   const navigate = useNavigate();
