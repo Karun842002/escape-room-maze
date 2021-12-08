@@ -17,7 +17,7 @@ class RightButton extends React.Component {
     this.setState({ open: true });
     var hero = this.props.hero
     for(var j=hero[1];j<27;j++){
-      if(j==26){
+      if(j===26){
         break;
       }
       if(maze[hero[0]][j+1].wall===true){
