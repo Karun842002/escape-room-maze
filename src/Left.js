@@ -16,7 +16,9 @@ class LeftButton extends React.Component {
     this.setState({ open: true });
     var hero = this.props.hero
     for(var j=hero[1];j>=0;j--){
-      console.log(maze)
+      if(j===0){
+        break;
+      }
       if(maze[hero[0]][j-1].wall===true || 
         ((maze[hero[0]][j].options.includes('U') || maze[hero[0]][j].options.includes('D')) && 
         (maze[hero[0]][j].options.includes('L') || maze[hero[0]][j].options.includes('R')) && j!==hero[1])){
