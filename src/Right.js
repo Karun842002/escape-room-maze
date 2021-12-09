@@ -5,24 +5,29 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import {maze} from './walls'
+import { maze } from "./walls";
 
 class RightButton extends React.Component {
   state = {
     open: false,
-    pos : this.props.hero[1]
+    pos: this.props.hero[1],
   };
-  
+
   handleClickOpen = () => {
     this.setState({ open: true });
-    var hero = this.props.hero
-    for(var j=hero[1];j<27;j++){
-      if(j===26){
+    var hero = this.props.hero;
+    for (var j = hero[1]; j < 27; j++) {
+      if (j === 26) {
         break;
       }
-      if(maze[hero[0]][j+1].wall===true || 
-        ((maze[hero[0]][j].options.includes('U') || maze[hero[0]][j].options.includes('D')) && 
-        (maze[hero[0]][j].options.includes('L') || maze[hero[0]][j].options.includes('R')) && j!==hero[1])){
+      if (
+        maze[hero[0]][j + 1].wall === true ||
+        ((maze[hero[0]][j].options.includes("U") ||
+          maze[hero[0]][j].options.includes("D")) &&
+          (maze[hero[0]][j].options.includes("L") ||
+            maze[hero[0]][j].options.includes("R")) &&
+          j !== hero[1])
+      ) {
         break;
       }
     }
@@ -35,26 +40,26 @@ class RightButton extends React.Component {
 
   handleAgree = () => {
     this.handleClose();
-    
-    var hero =this.props.hero;
+
+    var hero = this.props.hero;
     var pos = this.state.pos;
-    var vis = this.props.vis
-    if(this.state.pos !== 26)
-    for(let i=-1;i<=1;i++){
-      for(let j=hero[1];j<=pos+1;j++){
-        vis[hero[0]+i][j] = true;
+    var vis = this.props.vis;
+    if (this.state.pos !== 26)
+      for (let i = -1; i <= 1; i++) {
+        for (let j = hero[1]; j <= pos + 1; j++) {
+          vis[hero[0] + i][j] = true;
+        }
       }
-    }
-    
+
     var flattened = vis.reduce(function (a, b) {
       return a.concat(b);
     });
     var data = {
-      visiblity : flattened,
-      hero : [this.props.hero[0],this.state.pos]
-    }
-    this.props.setData(data)
-    if(this.state.pos === 26) alert('You Win')
+      visiblity: flattened,
+      hero: [this.props.hero[0], this.state.pos],
+    };
+    this.props.setData(data);
+    if (this.state.pos === 26) alert("You Win");
   };
   handleDisagree = () => {
     this.handleClose();
@@ -64,11 +69,11 @@ class RightButton extends React.Component {
       <div>
         {/* Button to trigger the opening of the dialog */}
         <a href="#" className="right" onClick={this.handleClickOpen}>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        RIGHT
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          RIGHT
         </a>
         {/* Dialog that is displayed if the state open is true */}
         <Dialog

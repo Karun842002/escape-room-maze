@@ -5,24 +5,29 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { maze } from './walls'
+import { maze } from "./walls";
 
 class LeftButton extends React.Component {
   state = {
     open: false,
-    pos : this.props.hero[1]
+    pos: this.props.hero[1],
   };
 
   handleClickOpen = () => {
     this.setState({ open: true });
-    var hero = this.props.hero
-    for(var j=hero[1];j>=0;j--){
-      if(j===0){
+    var hero = this.props.hero;
+    for (var j = hero[1]; j >= 0; j--) {
+      if (j === 0) {
         break;
       }
-      if(maze[hero[0]][j-1].wall===true || 
-        ((maze[hero[0]][j].options.includes('U') || maze[hero[0]][j].options.includes('D')) && 
-        (maze[hero[0]][j].options.includes('L') || maze[hero[0]][j].options.includes('R')) && j!==hero[1])){
+      if (
+        maze[hero[0]][j - 1].wall === true ||
+        ((maze[hero[0]][j].options.includes("U") ||
+          maze[hero[0]][j].options.includes("D")) &&
+          (maze[hero[0]][j].options.includes("L") ||
+            maze[hero[0]][j].options.includes("R")) &&
+          j !== hero[1])
+      ) {
         break;
       }
     }
@@ -36,22 +41,22 @@ class LeftButton extends React.Component {
   handleAgree = () => {
     this.handleClose();
 
-    var hero =this.props.hero;
+    var hero = this.props.hero;
     var pos = this.state.pos;
-    var vis = this.props.vis
-    for(let i=-1;i<=1;i++){
-      for(let j=hero[1];j>=pos-1;j--){
-        vis[hero[0]+i][j] = true;
+    var vis = this.props.vis;
+    for (let i = -1; i <= 1; i++) {
+      for (let j = hero[1]; j >= pos - 1; j--) {
+        vis[hero[0] + i][j] = true;
       }
     }
     var flattened = vis.reduce(function (a, b) {
       return a.concat(b);
     });
     var data = {
-      visiblity : flattened,
-      hero : [this.props.hero[0],this.state.pos]
-    }
-    this.props.setData(data)
+      visiblity: flattened,
+      hero: [this.props.hero[0], this.state.pos],
+    };
+    this.props.setData(data);
   };
   handleDisagree = () => {
     this.handleClose();
@@ -61,11 +66,11 @@ class LeftButton extends React.Component {
       <div>
         {/* Button to trigger the opening of the dialog */}
         <a href="#" className="left" onClick={this.handleClickOpen}>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        LEFT
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          LEFT
         </a>
         {/* Dialog that is displayed if the state open is true */}
         <Dialog
@@ -79,7 +84,7 @@ class LeftButton extends React.Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-            Are you sure you want to move LEFT?
+              Are you sure you want to move LEFT?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
