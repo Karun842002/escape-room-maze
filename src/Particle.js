@@ -459,10 +459,10 @@ const Particle = () => {
             },
             "random": false,
             "size": false,
-            "speed": 5,
+            "speed": 2,
             "spin": {
               "acceleration": 0,
-              "enable": false
+              "enable": true
             },
             "straight": false,
             "trail": {

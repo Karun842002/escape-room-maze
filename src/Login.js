@@ -14,15 +14,12 @@ export default function BasicTextFields({ setPassword, setEmail, handleAction })
        <div class="clouds"></div>
             <div class="login-form">
                 <Particle/>
-                <div className="heading-container" id="heading">
-                    Login Form
-                </div>
-                <div id="textfield"><TextField id="email" label="Enter the Email" variant="outlined" onChange={(e) => setEmail(e.target.value)}/></div>
-                <div id="textfield"><TextField id="password" label="Enter the Password" variant="outlined" onChange={(e) => setPassword(e.target.value)}/></div>
-                <Button handleAction={handleAction}/>
-            </div>
-                
-            
+                <label>Email</label>
+                <div id="textfield"><TextField placeholder="Email" id="email" label="Enter the Email" variant="outlined" onChange={(e) => setEmail(e.target.value)}/></div>
+                <label>Password</label>
+                <div id="textfield"><TextField placeholder="Password" id="password" label="Enter the Password" variant="outlined" onChange={(e) => setPassword(e.target.value)}/></div>
+                <a href="#" class="btn" onClick={handleAction}>LOG IN</a>
+            </div> 
         </div>
     );
 }
