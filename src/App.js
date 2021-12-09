@@ -6,6 +6,8 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 import Login from './Login'
 import Maze from './Maze'
+import Error from './Error'
+import Cookies from 'js-cookie'
 import "./App.css";
 
 function App() {
@@ -24,6 +26,15 @@ function App() {
           navigate('/maze')
         })
   }
+  useEffect(()=>{
+    const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+    console.log(isMobile)
+    if(isMobile){
+      navigate('/error404')
+    }else{
+      navigate('/')
+    }
+  },[])
 
   useEffect(() => {
     let authToken = sessionStorage.getItem('Auth Token')
@@ -39,6 +50,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Login setEmail={setEmail} setPassword={setPassword} handleAction={() => handleAction()}/>} />
             <Route path='/maze' element ={<Maze />} />
+            <Route path='/error404' element ={<Error />} />
           </Routes>
         </>
       </div>
