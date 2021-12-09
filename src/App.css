@@ -14,6 +14,7 @@
   background-size: 8em 8em;
   border: 2px solid black;
   align-self: center;
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 34px 35px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -9px 9px;
 }
 #maze div {
   display: flex;
@@ -52,3 +53,4 @@
   flex-direction:column;
   text-align: center;
 }
+
