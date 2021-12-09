@@ -60,6 +60,4 @@ const walls = [
   }
 }
 
-console.log(maze)
-
 export { maze };

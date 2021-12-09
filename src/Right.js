@@ -26,7 +26,6 @@ class RightButton extends React.Component {
         break;
       }
     }
-    console.log(j)
     this.setState({ pos: j });
   };
 
@@ -35,22 +34,29 @@ class RightButton extends React.Component {
   };
 
   handleAgree = () => {
-    console.log("I agree!");
     this.handleClose();
+    
     var hero =this.props.hero;
     var pos = this.state.pos;
     var vis = this.props.vis
+    if(this.state.pos !== 26)
     for(let i=-1;i<=1;i++){
       for(let j=hero[1];j<=pos+1;j++){
         vis[hero[0]+i][j] = true;
       }
     }
-    this.props.setHero([this.props.hero[0],this.state.pos]);
-    this.props.setvis(vis)
+    
+    var flattened = vis.reduce(function (a, b) {
+      return a.concat(b);
+    });
+    var data = {
+      visiblity : flattened,
+      hero : [this.props.hero[0],this.state.pos]
+    }
+    this.props.setData(data)
     if(this.state.pos === 26) alert('You Win')
   };
   handleDisagree = () => {
-    console.log("I do not agree.");
     this.handleClose();
   };
   render() {

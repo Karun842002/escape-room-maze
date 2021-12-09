@@ -16,14 +16,13 @@ class UpButton extends React.Component {
     this.setState({ open: true });
     var hero = this.props.hero
     for(var j=hero[0];j>=0;j--){
-      console.log(maze)
       if(maze[j-1][hero[1]].wall===true || 
         ((maze[j][hero[1]].options.includes('U') || maze[j][hero[1]].options.includes('D')) && 
         (maze[j][hero[1]].options.includes('L') || maze[j][hero[1]].options.includes('R')) && j!==hero[0])){
         break;
       }
     }
-    console.log(j)
+
     this.setState({ pos: j });
   };
 
@@ -32,7 +31,6 @@ class UpButton extends React.Component {
   };
 
   handleAgree = () => {
-    console.log("I agree!");
     this.handleClose();
 
     var hero =this.props.hero;
@@ -43,11 +41,16 @@ class UpButton extends React.Component {
         vis[j][hero[1]+i] = true;
       }
     }
-    this.props.setHero([this.state.pos,this.props.hero[1]]);
-    this.props.setvis(vis)
+    var flattened = vis.reduce(function (a, b) {
+      return a.concat(b);
+    });
+    var data = {
+      visiblity : flattened,
+      hero : [this.state.pos, this.props.hero[1]]
+    }
+    this.props.setData(data)
   };
   handleDisagree = () => {
-    console.log("I do not agree.");
     this.handleClose();
   };
   render() {

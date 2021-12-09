@@ -6,6 +6,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { maze } from './walls'
+
 class LeftButton extends React.Component {
   state = {
     open: false,
@@ -25,7 +26,6 @@ class LeftButton extends React.Component {
         break;
       }
     }
-    console.log(j)
     this.setState({ pos: j });
   };
 
@@ -34,7 +34,6 @@ class LeftButton extends React.Component {
   };
 
   handleAgree = () => {
-    console.log("I agree!");
     this.handleClose();
 
     var hero =this.props.hero;
@@ -45,11 +44,16 @@ class LeftButton extends React.Component {
         vis[hero[0]+i][j] = true;
       }
     }
-    this.props.setHero([this.props.hero[0],this.state.pos]);
-    this.props.setvis(vis)
+    var flattened = vis.reduce(function (a, b) {
+      return a.concat(b);
+    });
+    var data = {
+      visiblity : flattened,
+      hero : [this.props.hero[0],this.state.pos]
+    }
+    this.props.setData(data)
   };
   handleDisagree = () => {
-    console.log("I do not agree.");
     this.handleClose();
   };
   render() {
