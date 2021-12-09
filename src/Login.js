@@ -9,11 +9,12 @@ import './login.css'
 export default function BasicTextFields({ setPassword, setEmail, handleAction }) {
     return (
         <div>
-            <div class="stars"></div>
-        <div class="twinkling"></div> 
-       <div class="clouds"></div>
+             <Particle/>
             <div class="login-form">
-                <Particle/>
+            <div class="stars anim"></div>
+        <div class="twinkling anim"></div> 
+       <div class="clouds anim"></div>
+               
                 <label>Email</label>
                 <div id="textfield"><TextField placeholder="Email" id="email" label="Enter the Email" variant="outlined" onChange={(e) => setEmail(e.target.value)}/></div>
                 <label>Password</label>

@@ -19,7 +19,7 @@ const Particle = () => {
         "autoPlay": true,
         "background": {
           "color": {
-            "value": "#000000c0"
+            "value": "#000000"
           },
           "image": "",
           "position": "",
@@ -462,7 +462,7 @@ const Particle = () => {
             "speed": 2,
             "spin": {
               "acceleration": 0,
-              "enable": true
+              "enable": false
             },
             "straight": false,
             "trail": {
