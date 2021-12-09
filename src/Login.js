@@ -15,11 +15,11 @@ export default function BasicTextFields({ setPassword, setEmail, handleAction })
         <div class="twinkling anim"></div> 
        <div class="clouds anim"></div>
                
-                <label>Email</label>
-                <div id="textfield"><TextField placeholder="Email" id="email" label="Enter the Email" variant="outlined" onChange={(e) => setEmail(e.target.value)}/></div>
-                <label>Password</label>
-                <div id="textfield"><TextField placeholder="Password" id="password" label="Enter the Password" variant="outlined" onChange={(e) => setPassword(e.target.value)}/></div>
-                <a href="#" class="btn" onClick={handleAction}>LOG IN</a>
+                <div id="textfield"><TextField id="email" label="Enter the Email" variant="outlined" onChange={(e) => setEmail(e.target.value)}
+                InputLabelProps={{className:"textfield__label"}}/></div>
+                <div id="textfield"><TextField id="password" label="Enter the Password" variant="outlined" onChange={(e) => setPassword(e.target.value)}
+                InputLabelProps={{className:"textfield__label"}}/></div>
+                <button class="btn" onClick={handleAction}>LOG IN</button>
             </div> 
         </div>
     );
