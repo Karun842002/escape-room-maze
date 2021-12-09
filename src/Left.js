@@ -60,7 +60,13 @@ class LeftButton extends React.Component {
     return (
       <div>
         {/* Button to trigger the opening of the dialog */}
-        <Button onClick={this.handleClickOpen}>Left</Button>
+        <a href="#" className="left" onClick={this.handleClickOpen}>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        LEFT
+        </a>
         {/* Dialog that is displayed if the state open is true */}
         <Dialog
           open={this.state.open}

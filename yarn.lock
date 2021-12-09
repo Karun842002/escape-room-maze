@@ -10280,6 +10280,11 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
 
+"react-js-loader@^0.1.0":
+  "integrity" "sha512-ROjgt1+3bfxigYBKAEa3pOTUJRCZgksymPoQ9djgxLEpqAXM/zin5cVt2MFs6xZ4zqM+g5XhJdgYUN9FYtNpCQ=="
+  "resolved" "https://registry.npmjs.org/react-js-loader/-/react-js-loader-0.1.0.tgz"
+  "version" "0.1.0"
+
 "react-refresh@^0.8.3", "react-refresh@>=0.8.3 <0.10.0":
   "integrity" "sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg=="
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.8.3.tgz"
@@ -12020,6 +12025,13 @@
   "integrity" "sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.1.0.tgz"
   "version" "2.1.0"
+
+"tsparticles-preset-stars@^1.22.5":
+  "integrity" "sha512-MhB4/m50UDGrq1D6E783VYp8VesUEdi9YFkSd+e1SPayrMc9idJbAebCqX9VYrXDv0beBt2SA5GulK/p4yc/ug=="
+  "resolved" "https://registry.npmjs.org/tsparticles-preset-stars/-/tsparticles-preset-stars-1.22.5.tgz"
+  "version" "1.22.5"
+  dependencies:
+    "tsparticles" "^1.37.5"
 
 "tsparticles@^1.37.5":
   "integrity" "sha512-BQBRnnKKhKH2POwxuHzPiuL/zPUjuR5QmMCFQ2vm3fadE2k4vqmH099m1R9R+nt0lTvWL6SCS0hYQQkqUjsMXg=="

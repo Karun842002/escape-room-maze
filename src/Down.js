@@ -55,7 +55,13 @@ class DownButton extends React.Component {
     return (
       <div>
         {/* Button to trigger the opening of the dialog */}
-        <Button onClick={this.handleClickOpen}>Down</Button>
+        <a href="#" className="down" onClick={this.handleClickOpen}>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        DOWN
+        </a>
         {/* Dialog that is displayed if the state open is true */}
         <Dialog
           open={this.state.open}

@@ -57,7 +57,13 @@ class UpButton extends React.Component {
     return (
       <div>
         {/* Button to trigger the opening of the dialog */}
-        <Button onClick={this.handleClickOpen}>Up</Button>
+        <a href="#" className="up" onClick={this.handleClickOpen}>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        UP
+        </a>
         {/* Dialog that is displayed if the state open is true */}
         <Dialog
           open={this.state.open}
