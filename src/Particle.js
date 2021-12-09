@@ -43,7 +43,7 @@ const Particle = () => {
         },
         "detectRetina": true,
         "duration": 0,
-        "fpsLimit": 60,
+        "fpsLimit": 20,
         "interactivity": {
           "detectsOn": "window",
           "events": {
