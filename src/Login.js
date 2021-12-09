@@ -9,7 +9,9 @@ import './login.css'
 export default function BasicTextFields({ setPassword, setEmail, handleAction }) {
     return (
         <div>
-            <Particle2 />
+            <div class="stars"></div>
+        <div class="twinkling"></div> 
+       <div class="clouds"></div>
             <div class="login-form">
                 <Particle/>
                 <div className="heading-container" id="heading">
