@@ -9,6 +9,7 @@ import Maze from "./Maze";
 import Error from "./Error";
 import Cookies from "js-cookie";
 import "./App.css";
+import { doc } from "firebase/firestore";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -19,7 +20,6 @@ function App() {
     const authentication = getAuth();
     signInWithEmailAndPassword(authentication, email, password)
       .then((response) => {
-        console.log(authentication.currentUser.uid);
         var uid = authentication.currentUser.uid;
         sessionStorage.setItem("UID", uid);
         sessionStorage.setItem(
@@ -32,19 +32,20 @@ function App() {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
+        var errordiv = document.getElementById('errortext')
         if (errorCode === "auth/wrong-password") {
-          alert("Wrong password.");
+          errordiv.innerHTML = "Wrong password"
         } else {
-          alert(errorMessage);
+          errordiv.innerHTML = "Invalid Email or Password. Please Try Again"
         }
-        console.log(error);
+        
       });
   };
   useEffect(() => {
     const isMobile = window.matchMedia(
       "only screen and (max-width: 760px)"
     ).matches;
-    console.log(isMobile);
+    
     if (isMobile) {
       navigate("/error404");
     } else {
@@ -56,7 +57,7 @@ function App() {
     let authToken = sessionStorage.getItem("Auth Token");
     if (authToken) {
       navigate("/maze");
-      console.log(sessionStorage.getItem("UID"));
+      
     }
   }, [navigate]);
 

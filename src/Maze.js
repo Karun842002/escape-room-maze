@@ -17,9 +17,9 @@ import "./maze.css";
 async function getUserData(db, user) {
   const docRef = doc(db, "users", user);
   getDoc(docRef).then((docSnap) => {
-    console.log(docSnap);
+    
     if (docSnap.exists()) {
-      console.log(docSnap.data());
+      
     } else {
       var v = Array(27)
         .fill(0)
@@ -61,15 +61,15 @@ function Maze() {
     const data = onSnapshot(doc(db, "users", user), (doc) => {
       var dat = doc.data();
       if (dat === undefined) {
-        console.log("TODO");
+        
         getUserData(db, user);
       } else {
-        console.log(dat);
+        
         var v = dat.visiblity;
-        console.log(v);
+        
         var state_arr = [];
         while (v.length) state_arr.push(v.splice(0, 27));
-        console.log(state_arr);
+        
         setVis(state_arr);
         setHero(dat.hero);
         setLoading(false);
