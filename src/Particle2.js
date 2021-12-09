@@ -61,7 +61,7 @@ const Particle2 = () => {
                 "enable": true,
                 "mode": "connect",
                 "parallax": {
-                  "enable": false,
+                  "enable": true,
                   "force": 60,
                   "smooth": 10
                 }
@@ -92,7 +92,7 @@ const Particle2 = () => {
                 "links": {
                   "opacity": 0.5
                 },
-                "radius": 60
+                "radius": 100
               },
               "grab": {
                 "distance": 400,

@@ -75,7 +75,7 @@ const Particle = () => {
               "easing": "ease-out-quad",
               "factor": 1,
               "maxSpeed": 50,
-              "speed": 1
+              "speed": 20
             },
             "bounce": {
               "distance": 200
@@ -131,7 +131,7 @@ const Particle = () => {
               "distance": 200,
               "duration": 0.4,
               "factor": 100,
-              "speed": 1,
+              "speed": 20,
               "maxSpeed": 50,
               "easing": "ease-out-quad"
             },
@@ -173,7 +173,7 @@ const Particle = () => {
                   "outModes": {
                     "default": "destroy"
                   },
-                  "speed": 2,
+                  "speed": 20,
                   "angle": {},
                   "attract": {
                     "rotate": {}
@@ -191,7 +191,7 @@ const Particle = () => {
                   "value": 5,
                   "animation": {
                     "enable": true,
-                    "speed": 5,
+                    "speed": 20,
                     "minimumValue": 1,
                     "sync": true,
                     "startValue": "min",
@@ -459,7 +459,7 @@ const Particle = () => {
             },
             "random": false,
             "size": false,
-            "speed": 2,
+            "speed": 10,
             "spin": {
               "acceleration": 0,
               "enable": false
