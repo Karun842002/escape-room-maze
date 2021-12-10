@@ -42,13 +42,11 @@ function App() {
       });
   };
   useEffect(() => {
-    const isMobile = window.matchMedia(
-      "only screen and (max-width: 760px)"
-    ).matches;
-    
-    if (isMobile) {
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+      // true for mobile device
       navigate("/error404");
-    } else {
+    }else{
+      // false for not mobile device
       navigate("/");
     }
   }, []);
