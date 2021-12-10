@@ -58,6 +58,8 @@ function Maze() {
   const [hero, setHero] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    var body = document.getElementsByTagName('body')
+    body.id = 'mazebody'
     const data = onSnapshot(doc(db, "users", user), (doc) => {
       var dat = doc.data();
       if (dat === undefined) {
@@ -95,10 +97,10 @@ function Maze() {
   } else {
     return (
       <div id="container">
+        <div id="content-container">
         <div class="stars"></div>
         <div class="twinkling"></div>
         <div class="clouds"></div>
-        <div id="content-container">
           <div id="maze_container" key="maze_container">
             <div id="maze" key="maze">
               {maze.map(function (row, i) {
