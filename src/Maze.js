@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { app } from "./firebase";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, updateDoc } from "firebase/firestore";
 import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
 
 import UpButton from "./Up";
@@ -32,9 +32,12 @@ async function getUserData(db, user) {
       var flattened = v.reduce(function (a, b) {
         return a.concat(b);
       });
+      var sol = Array(113).fill(false)
+      sol[0] = true;
       setUserData(docRef, {
         visiblity: flattened,
         hero: [1, 0],
+        solved : sol
       });
     }
   });
@@ -44,11 +47,15 @@ async function setUserData(docRef, data) {
   await setDoc(docRef, data);
 }
 
+async function updateUserData(docRef, data){
+  await updateDoc(docRef, data)
+}
+
 function setData(data) {
   const db = getFirestore();
   const user = sessionStorage.getItem("UID");
   const docRef = doc(db, "users", user);
-  setUserData(docRef, data);
+  updateUserData(docRef, data);
 }
 
 

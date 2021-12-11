@@ -1,7 +1,7 @@
 import React from "react";
 
 import { app } from "./firebase";
-import { getFirestore } from "firebase/firestore";
+import { getDoc, getFirestore } from "firebase/firestore";
 import { doc, onSnapshot } from "firebase/firestore";
 
 import Button from "@material-ui/core/Button";
@@ -25,6 +25,44 @@ class LeftButton extends React.Component {
     option4 : '',
     correct : '',
   };
+
+  handleClick = () => {
+    if(this.props.click){
+      var hero = this.props.hero;
+      for (var j = hero[1]; j >= 0; j--) {
+        if (j === 0) {
+          break;
+        }
+        if (
+          maze[hero[0]][j - 1].wall === true ||
+          ((maze[hero[0]][j].options.includes("U") ||
+            maze[hero[0]][j].options.includes("D")) &&
+            (maze[hero[0]][j].options.includes("L") ||
+              maze[hero[0]][j].options.includes("R")) &&
+            j !== hero[1])
+        ) {
+          break;
+        }
+      }
+    var key = String(hero[0])+'-'+String(j)
+    var q = queMap.get(key)
+    const db = getFirestore();
+    const user = sessionStorage.getItem("UID");
+    getDoc(doc(db,"users",user)).then((doc)=>{
+      var data = doc.data()
+      var visited = data.solved;
+      if(visited[parseInt(q)]===true){
+        this.handleAgree();
+        this.setState({ pos: j });
+        console.log(key,'dest-visited')
+      }
+      else{
+        this.handleClickOpen();
+        console.log(key,'dest-not-visited')
+      }
+    })
+    }
+  }
 
   handleClickOpen = () => {
     if (this.props.click) {
@@ -51,13 +89,11 @@ class LeftButton extends React.Component {
     var q = queMap.get(key)
     console.log(key)
     const db = getFirestore();
-    const data = onSnapshot(doc(db, "questions", q), (doc) => {
+    getDoc(doc(db, "questions", q)).then((doc) => {
       var dat = doc.data();
-      console.log(dat)
       this.setState(dat)
     });
     }
-    
   };
 
   handleClose = () => {
@@ -79,11 +115,22 @@ class LeftButton extends React.Component {
     var flattened = vis.reduce(function (a, b) {
       return a.concat(b);
     });
-    var data = {
-      visiblity: flattened,
-      hero: [this.props.hero[0], this.state.pos],
-    };
-    this.props.setData(data);
+    var key = String(hero[0])+'-'+String(pos)
+    var q = queMap.get(key)
+    const db = getFirestore();
+    const user = sessionStorage.getItem("UID");
+    console.log(pos)
+    getDoc(doc(db,"users",user)).then((doc)=>{
+      var data = doc.data()
+      var visited = data.solved;
+      visited[parseInt(q)] = true
+      var data = {
+        visiblity: flattened,
+        hero: [this.props.hero[0], this.state.pos],
+        solved : visited
+      };
+      this.props.setData(data);
+    })
   };
   handleDisagree = () => {
     this.handleClose();
@@ -92,7 +139,7 @@ class LeftButton extends React.Component {
     return (
       <div>
         {/* Button to trigger the opening of the dialog */}
-        <a href="#" className="left" onClick={this.handleClickOpen}>
+        <a href="#" className="left" onClick={this.handleClick}>
           <span></span>
           <span></span>
           <span></span>

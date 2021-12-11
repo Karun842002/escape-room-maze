@@ -1,4 +1,5 @@
 var queSquares = [
+  [1, 0],
   [1, 1],
   [1, 5],
   [1, 7],
@@ -117,7 +118,7 @@ var queMap = new Map();
 
 queSquares.forEach((e, i) => {
   var key = String(e[0]) + "-" + String(e[1]);
-  queMap.set(key, String(i + 1));
+  queMap.set(key, String(i));
 });
 
 export { queMap };
