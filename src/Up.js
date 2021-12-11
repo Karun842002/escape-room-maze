@@ -6,33 +6,55 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { maze } from "./walls";
+import { queMap } from "./questionMap";
+import { app } from "./firebase";
+import { getFirestore } from "firebase/firestore";
+import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
 class UpButton extends React.Component {
   state = {
     open: false,
     pos: this.props.hero[1],
+    question: "",
+    option1: "",
+    option2: "",
+    option3: "",
+    option4: "",
+    correct: "",
   };
 
   handleClickOpen = () => {
-    this.setState({ open: true });
-    var hero = this.props.hero;
-    for (var j = hero[0]; j >= 0; j--) {
-      if (
-        maze[j - 1][hero[1]].wall === true ||
-        ((maze[j][hero[1]].options.includes("U") ||
-          maze[j][hero[1]].options.includes("D")) &&
-          (maze[j][hero[1]].options.includes("L") ||
-            maze[j][hero[1]].options.includes("R")) &&
-          j !== hero[0])
-      ) {
-        break;
+    if (this.props.click) {
+      this.setState({ open: true });
+      this.props.setClick(false);
+      var hero = this.props.hero;
+      for (var j = hero[0]; j >= 0; j--) {
+        if (
+          maze[j - 1][hero[1]].wall === true ||
+          ((maze[j][hero[1]].options.includes("U") ||
+            maze[j][hero[1]].options.includes("D")) &&
+            (maze[j][hero[1]].options.includes("L") ||
+              maze[j][hero[1]].options.includes("R")) &&
+            j !== hero[0])
+        ) {
+          break;
+        }
       }
-    }
 
-    this.setState({ pos: j });
+      this.setState({ pos: j });
+      var key = String(j) + "-" + String(hero[1]);
+      console.log(key)
+      var q = queMap.get(key);
+      const db = getFirestore();
+      const data = onSnapshot(doc(db, "questions", q), (doc) => {
+        var dat = doc.data();
+        this.setState(dat);
+      });
+    }
   };
 
   handleClose = () => {
     this.setState({ open: false });
+    this.props.setClick(true);
   };
 
   handleAgree = () => {
@@ -81,15 +103,43 @@ class UpButton extends React.Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Are you sure you want to move UP?
+              {this.state.question}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleDisagree} color="primary">
-              Disagree
+            <Button
+              onClick={
+                this.state.correct == 1 ? this.handleAgree : this.handleDisagree
+              }
+              color="primary"
+            >
+              {this.state.option1}
             </Button>
-            <Button onClick={this.handleAgree} color="primary" autoFocus>
-              Agree
+            <Button
+              onClick={
+                this.state.correct == 2 ? this.handleAgree : this.handleDisagree
+              }
+              color="primary"
+              autoFocus
+            >
+              {this.state.option2}
+            </Button>
+            <Button
+              onClick={
+                this.state.correct == 3 ? this.handleAgree : this.handleDisagree
+              }
+              color="primary"
+            >
+              {this.state.option3}
+            </Button>
+            <Button
+              onClick={
+                this.state.correct == 4 ? this.handleAgree : this.handleDisagree
+              }
+              color="primary"
+              autoFocus
+            >
+              {this.state.option4}
             </Button>
           </DialogActions>
         </Dialog>

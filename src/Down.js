@@ -6,14 +6,26 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { maze } from "./walls";
+import { queMap } from "./questionMap"
+import { app } from "./firebase";
+import { getFirestore } from "firebase/firestore";
+import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
 class DownButton extends React.Component {
   state = {
     open: false,
     pos: this.props.hero[1],
+    question : '',
+    option1 : '',
+    option2 : '',
+    option3 : '',
+    option4 : '',
+    correct : '',
   };
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    if (this.props.click){
+      this.setState({ open: true });
+      this.props.setClick(false)
     var hero = this.props.hero;
     for (var j = hero[0]; j < 27; j++) {
       if (
@@ -28,10 +40,20 @@ class DownButton extends React.Component {
       }
     }
     this.setState({ pos: j });
+    var key = String(j)+'-'+String(hero[1])
+    var q = queMap.get(key)
+    const db = getFirestore();
+    const data = onSnapshot(doc(db, "questions", q), (doc) => {
+      var dat = doc.data();
+      this.setState(dat)
+    });
+    }
+    
   };
 
   handleClose = () => {
     this.setState({ open: false });
+    this.props.setClick(true)
   };
   handleAgree = () => {
     this.handleClose();
@@ -79,15 +101,21 @@ class DownButton extends React.Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Are you sure you want to move DOWN?
+              {this.state.question}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleDisagree} color="primary">
-              Disagree
+            <Button onClick={(this.state.correct==1)?this.handleAgree:this.handleDisagree} color="primary">
+              {this.state.option1}
             </Button>
-            <Button onClick={this.handleAgree} color="primary" autoFocus>
-              Agree
+            <Button onClick={(this.state.correct==2)?this.handleAgree:this.handleDisagree} color="primary" autoFocus>
+            {this.state.option2}
+            </Button>
+            <Button onClick={(this.state.correct==3)?this.handleAgree:this.handleDisagree} color="primary">
+            {this.state.option3}
+            </Button>
+            <Button onClick={(this.state.correct==4)?this.handleAgree:this.handleDisagree} color="primary" autoFocus>
+            {this.state.option4}
             </Button>
           </DialogActions>
         </Dialog>

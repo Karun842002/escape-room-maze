@@ -1,20 +1,35 @@
 import React from "react";
+
+import { app } from "./firebase";
+import { getFirestore } from "firebase/firestore";
+import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
+
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+
 import { maze } from "./walls";
+import { queMap } from "./questionMap"
 
 class LeftButton extends React.Component {
   state = {
     open: false,
     pos: this.props.hero[1],
+    question : '',
+    option1 : '',
+    option2 : '',
+    option3 : '',
+    option4 : '',
+    correct : '',
   };
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    if (this.props.click) {
+      this.setState({ open: true });
+      this.props.setClick(false)
     var hero = this.props.hero;
     for (var j = hero[1]; j >= 0; j--) {
       if (j === 0) {
@@ -32,10 +47,22 @@ class LeftButton extends React.Component {
       }
     }
     this.setState({ pos: j });
+    var key = String(hero[0])+'-'+String(j)
+    var q = queMap.get(key)
+    console.log(key)
+    const db = getFirestore();
+    const data = onSnapshot(doc(db, "questions", q), (doc) => {
+      var dat = doc.data();
+      console.log(dat)
+      this.setState(dat)
+    });
+    }
+    
   };
 
   handleClose = () => {
     this.setState({ open: false });
+    this.props.setClick(true)
   };
 
   handleAgree = () => {
@@ -84,15 +111,21 @@ class LeftButton extends React.Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Are you sure you want to move LEFT?
+              {this.state.question}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleDisagree} color="primary">
-              Disagree
+            <Button onClick={(this.state.correct==1)?this.handleAgree:this.handleDisagree} color="primary">
+              {this.state.option1}
             </Button>
-            <Button onClick={this.handleAgree} color="primary" autoFocus>
-              Agree
+            <Button onClick={(this.state.correct==2)?this.handleAgree:this.handleDisagree} color="primary" autoFocus>
+            {this.state.option2}
+            </Button>
+            <Button onClick={(this.state.correct==3)?this.handleAgree:this.handleDisagree} color="primary">
+            {this.state.option3}
+            </Button>
+            <Button onClick={(this.state.correct==4)?this.handleAgree:this.handleDisagree} color="primary" autoFocus>
+            {this.state.option4}
             </Button>
           </DialogActions>
         </Dialog>

@@ -12,6 +12,7 @@ import Loader from "react-js-loader";
 import Login from "./Login";
 
 import { maze } from "./walls";
+import { queMap } from './questionMap'
 import "./maze.css";
 
 async function getUserData(db, user) {
@@ -51,12 +52,14 @@ function setData(data) {
   setUserData(docRef, data);
 }
 
+
 function Maze() {
   const db = getFirestore();
   const user = sessionStorage.getItem("UID");
   const [visiblity, setVis] = useState([]);
   const [hero, setHero] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [click, setClick] = useState(true);
   useEffect(() => {
     var body = document.getElementsByTagName('body')
     body.id = 'mazebody'
@@ -79,6 +82,29 @@ function Maze() {
     });
     return () => data();
   }, []);
+
+  useEffect(()=>{
+    document.addEventListener('keydown', function(e) {
+      var ele;
+      if (e.key === 'ArrowUp') {
+        ele = document.getElementsByClassName('up')[0]
+        ele.click()
+      }
+      if (e.key === 'ArrowDown') {
+        ele = document.getElementsByClassName('down')[0]
+        ele.click()
+      }
+      if (e.key === 'ArrowLeft') {
+        ele = document.getElementsByClassName('left')[0]
+        ele.click()
+      }
+      if (e.key === 'ArrowRight') {
+        ele = document.getElementsByClassName('right')[0]
+        ele.click()
+      }
+  });
+  },[])
+
 
   if (loading) {
     return (
@@ -136,20 +162,32 @@ function Maze() {
             </div>
           </div>
           <div className="buttoncon" key="buttoncon">
-            <UpButton hero={hero} vis={visiblity} setData={setData}></UpButton>
+            <UpButton 
+            hero={hero} 
+            vis={visiblity}
+            click={click}
+            setClick={setClick} 
+            setData={setData}
+            ></UpButton>
             <DownButton
               hero={hero}
               vis={visiblity}
+              click={click}
+            setClick={setClick}
               setData={setData}
             ></DownButton>
             <LeftButton
               hero={hero}
               vis={visiblity}
+              click={click}
+            setClick={setClick}
               setData={setData}
             ></LeftButton>
             <RightButton
               hero={hero}
               vis={visiblity}
+              click={click}
+            setClick={setClick}
               setData={setData}
             ></RightButton>
           </div>
