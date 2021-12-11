@@ -45,16 +45,18 @@ export default function BasicTextFields({
             variant="outlined"
             onChange={(e) => setEmail(e.target.value)}
             InputLabelProps={{ className: "textfield__label" }}
+            fullWidth
           />
         </div>
         <div id="textfield">
           <TextField
             type="password"
-            id="password"
+            id="password full-width-text-field"
             label="Enter the Password"
             variant="outlined"
             onChange={(e) => setPassword(e.target.value)}
             InputLabelProps={{ className: "textfield__label" }}
+            fullWidth
           />
         </div>
         <button class="btn" onClick={handleAction}>
