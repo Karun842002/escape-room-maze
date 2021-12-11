@@ -122,6 +122,17 @@ class UpButton extends React.Component {
   };
   handleDisagree = () => {
     this.handleClose();
+    const db = getFirestore();
+    const user = sessionStorage.getItem("UID");
+    getDoc(doc(db,"users",user)).then((doc)=>{
+      var data = doc.data()
+      var pen = data.penalty;
+      pen+=1
+      var data = {
+        penalty : pen
+      };
+      this.props.setData(data);
+    })
   };
   render() {
     return (
@@ -163,7 +174,6 @@ class UpButton extends React.Component {
                 this.state.correct === 2 ? this.handleAgree : this.handleDisagree
               }
               color="primary"
-              autoFocus
             >
               {this.state.option2}
             </Button>
@@ -180,7 +190,6 @@ class UpButton extends React.Component {
                 this.state.correct === 4 ? this.handleAgree : this.handleDisagree
               }
               color="primary"
-              autoFocus
             >
               {this.state.option4}
             </Button>

@@ -134,6 +134,17 @@ class LeftButton extends React.Component {
   };
   handleDisagree = () => {
     this.handleClose();
+    const db = getFirestore();
+    const user = sessionStorage.getItem("UID");
+    getDoc(doc(db,"users",user)).then((doc)=>{
+      var data = doc.data()
+      var pen = data.penalty;
+      pen+=1
+      var data = {
+        penalty : pen
+      };
+      this.props.setData(data);
+    })
   };
   render() {
     return (
@@ -165,13 +176,13 @@ class LeftButton extends React.Component {
             <Button onClick={(this.state.correct===1)?this.handleAgree:this.handleDisagree} color="primary">
               {this.state.option1}
             </Button>
-            <Button onClick={(this.state.correct===2)?this.handleAgree:this.handleDisagree} color="primary" autoFocus>
+            <Button onClick={(this.state.correct===2)?this.handleAgree:this.handleDisagree} color="primary">
             {this.state.option2}
             </Button>
             <Button onClick={(this.state.correct===3)?this.handleAgree:this.handleDisagree} color="primary">
             {this.state.option3}
             </Button>
-            <Button onClick={(this.state.correct===4)?this.handleAgree:this.handleDisagree} color="primary" autoFocus>
+            <Button onClick={(this.state.correct===4)?this.handleAgree:this.handleDisagree} color="primary">
             {this.state.option4}
             </Button>
           </DialogActions>

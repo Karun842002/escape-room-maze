@@ -37,7 +37,8 @@ async function getUserData(db, user) {
       setUserData(docRef, {
         visiblity: flattened,
         hero: [1, 0],
-        solved : sol
+        solved : sol,
+        penalty : 0
       });
     }
   });

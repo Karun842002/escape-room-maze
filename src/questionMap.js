@@ -112,6 +112,7 @@ var queSquares = [
   [23, 21],
   [23, 25],
   [25, 9],
+  [25,26]
 ];
 
 var queMap = new Map();
