@@ -58,6 +58,7 @@ class UpButton extends React.Component {
   handleClickOpen = () => {
     if (this.props.click) {
       this.setState({ open: true });
+      this.props.setData({click : false})
       this.props.setClick(false);
       var hero = this.props.hero;
       for (var j = hero[0]; j >= 0; j--) {
@@ -87,6 +88,7 @@ class UpButton extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
     this.props.setClick(true);
+    this.props.setData({click : true})
   };
 
   handleAgree = () => {

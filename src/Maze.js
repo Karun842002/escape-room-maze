@@ -10,7 +10,7 @@ import LeftButton from "./Left";
 import RightButton from "./Right";
 import Loader from "react-js-loader";
 import Login from "./Login";
-
+import Winner from "./Winner"
 import { maze } from "./walls";
 import "./maze.css";
 
@@ -23,7 +23,7 @@ async function getUserData(db, user) {
     } else {
       var v = Array(27)
         .fill(0)
-        .map((row) => new Array(27).fill(false));
+        .map((row) => new Array(27).fill(true));
       for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
           v[i][j] = true;
@@ -32,13 +32,17 @@ async function getUserData(db, user) {
       var flattened = v.reduce(function (a, b) {
         return a.concat(b);
       });
-      var sol = Array(113).fill(false)
+      var sol = Array(115).fill(true)
       sol[0] = true;
+      var d = new Date(0)
       setUserData(docRef, {
         visiblity: flattened,
         hero: [1, 0],
         solved : sol,
-        penalty : 0
+        penalty : 0,
+        click : true,
+        finished : false,
+        finishedTime : 0
       });
     }
   });
@@ -67,6 +71,7 @@ function Maze() {
   const [hero, setHero] = useState([]);
   const [loading, setLoading] = useState(true);
   const [click, setClick] = useState(true);
+  const [finished, setFinished] = useState(false); 
   useEffect(() => {
     var body = document.getElementsByTagName('body')
     body.id = 'mazebody'
@@ -85,6 +90,8 @@ function Maze() {
         setVis(state_arr);
         setHero(dat.hero);
         setLoading(false);
+        setClick(dat.click)
+        setFinished(dat.finished)
       }
     });
     return () => data();
@@ -127,7 +134,14 @@ function Maze() {
         <Login />
       </div>
     );
-  } else {
+  } else if(finished){
+    return (
+    <div>
+      <Winner />
+    </div>
+    )
+  }
+  else {
     return (
       <div id="container">
         <div id="content-container">

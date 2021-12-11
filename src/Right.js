@@ -1,7 +1,7 @@
 import React from "react";
 
 import { app } from "./firebase";
-import { getDoc, getFirestore } from "firebase/firestore";
+import { getDoc, getFirestore, serverTimestamp } from "firebase/firestore";
 import { doc, onSnapshot } from "firebase/firestore";
 
 import Button from "@material-ui/core/Button";
@@ -65,6 +65,7 @@ class RightButton extends React.Component {
     if (this.props.click) {
       this.setState({ open: true });
       this.props.setClick(false)
+      this.props.setData({click : false})
     var hero = this.props.hero;
     for (var j = hero[1]; j < 27; j++) {
       if (j === 26) {
@@ -95,6 +96,7 @@ class RightButton extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
     this.props.setClick(true)
+    this.props.setData({click : true})
   };
 
   handleAgree = () => {
@@ -128,7 +130,12 @@ class RightButton extends React.Component {
       };
       this.props.setData(data);
     })
-    if (this.state.pos === 26) alert("You Win");
+    if (this.state.pos === 26) 
+    this.props.setData(
+      {
+        finished : true,
+        finishedTime : serverTimestamp()
+      })
   };
   handleDisagree = () => {
     this.handleClose();
