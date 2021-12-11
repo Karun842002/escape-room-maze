@@ -9,7 +9,7 @@ import { maze } from "./walls";
 import { queMap } from "./questionMap";
 import { app } from "./firebase";
 import { getFirestore } from "firebase/firestore";
-import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 class UpButton extends React.Component {
   state = {
     open: false,
@@ -99,7 +99,7 @@ class UpButton extends React.Component {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            {"Successful Alert"}
+            {"Question"}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
@@ -109,7 +109,7 @@ class UpButton extends React.Component {
           <DialogActions>
             <Button
               onClick={
-                this.state.correct == 1 ? this.handleAgree : this.handleDisagree
+                this.state.correct === 1 ? this.handleAgree : this.handleDisagree
               }
               color="primary"
             >
@@ -117,7 +117,7 @@ class UpButton extends React.Component {
             </Button>
             <Button
               onClick={
-                this.state.correct == 2 ? this.handleAgree : this.handleDisagree
+                this.state.correct === 2 ? this.handleAgree : this.handleDisagree
               }
               color="primary"
               autoFocus
@@ -126,7 +126,7 @@ class UpButton extends React.Component {
             </Button>
             <Button
               onClick={
-                this.state.correct == 3 ? this.handleAgree : this.handleDisagree
+                this.state.correct === 3 ? this.handleAgree : this.handleDisagree
               }
               color="primary"
             >
@@ -134,7 +134,7 @@ class UpButton extends React.Component {
             </Button>
             <Button
               onClick={
-                this.state.correct == 4 ? this.handleAgree : this.handleDisagree
+                this.state.correct === 4 ? this.handleAgree : this.handleDisagree
               }
               color="primary"
               autoFocus

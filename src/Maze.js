@@ -12,7 +12,6 @@ import Loader from "react-js-loader";
 import Login from "./Login";
 
 import { maze } from "./walls";
-import { queMap } from './questionMap'
 import "./maze.css";
 
 async function getUserData(db, user) {

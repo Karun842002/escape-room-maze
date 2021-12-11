@@ -7,9 +7,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Login from "./Login";
 import Maze from "./Maze";
 import Error from "./Error";
-import Cookies from "js-cookie";
 import "./App.css";
-import { doc } from "firebase/firestore";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -31,7 +29,6 @@ function App() {
       .catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
-        var errorMessage = error.message;
         var errordiv = document.getElementById('errortext')
         if (errorCode === "auth/wrong-password") {
           errordiv.innerHTML = "Wrong password"

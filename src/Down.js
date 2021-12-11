@@ -9,7 +9,7 @@ import { maze } from "./walls";
 import { queMap } from "./questionMap"
 import { app } from "./firebase";
 import { getFirestore } from "firebase/firestore";
-import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 class DownButton extends React.Component {
   state = {
     open: false,
@@ -97,7 +97,7 @@ class DownButton extends React.Component {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            {"Successful Alert"}
+          {"Question"}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
@@ -105,16 +105,16 @@ class DownButton extends React.Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={(this.state.correct==1)?this.handleAgree:this.handleDisagree} color="primary">
+            <Button onClick={(this.state.correct===1)?this.handleAgree:this.handleDisagree} color="primary">
               {this.state.option1}
             </Button>
-            <Button onClick={(this.state.correct==2)?this.handleAgree:this.handleDisagree} color="primary" autoFocus>
+            <Button onClick={(this.state.correct===2)?this.handleAgree:this.handleDisagree} color="primary" autoFocus>
             {this.state.option2}
             </Button>
-            <Button onClick={(this.state.correct==3)?this.handleAgree:this.handleDisagree} color="primary">
+            <Button onClick={(this.state.correct===3)?this.handleAgree:this.handleDisagree} color="primary">
             {this.state.option3}
             </Button>
-            <Button onClick={(this.state.correct==4)?this.handleAgree:this.handleDisagree} color="primary" autoFocus>
+            <Button onClick={(this.state.correct===4)?this.handleAgree:this.handleDisagree} color="primary" autoFocus>
             {this.state.option4}
             </Button>
           </DialogActions>
