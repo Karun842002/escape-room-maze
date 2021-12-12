@@ -33,10 +33,7 @@ export default function BasicTextFields({
       <h1 className="neonhead">LABYRINTH</h1>
       <h1 className="neonhead">BREAKER</h1>
       </div>
-        <div class="login-form">
-        <div class="stars anim"></div>
-        <div class="twinkling anim"></div>
-        <div class="clouds anim"></div>
+        <div className="login-form">
 
         <div id="textfield">
           <TextField

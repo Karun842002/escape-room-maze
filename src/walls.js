@@ -1,9 +1,9 @@
 class Square {
-  constructor(options, wall, question) {
+  constructor(options, wall, key) {
     this.options = options;
     this.num_options = options.length;
     this.wall = wall;
-    this.question = question;
+    this.key = key;
   }
 }
 
@@ -399,18 +399,27 @@ const walls = [
   [26, 26],
 ];
 
+var keys = [[25,9],[5,15]]
+
 var maze = Array(27)
   .fill(0)
   .map((row) => new Array(27).fill(0));
 
 for (let i = 0; i < 27; i++) {
   for (let j = 0; j < 27; j++) {
-    maze[i][j] = new Square([], false, null);
+    maze[i][j] = new Square([], false, false);
   }
 }
-walls.forEach((e) => {
-  maze[e[0]][e[1]] = new Square([], true, null);
+
+keys.forEach((e) => {
+  maze[e[0]][e[1]] = new Square([], false, true);
 });
+
+walls.forEach((e) => {
+  maze[e[0]][e[1]] = new Square([], true, false);
+});
+
+
 
 for (let i = 1; i < 26; i++) {
   for (let j = 1; j < 26; j++) {
@@ -420,8 +429,10 @@ for (let i = 1; i < 26; i++) {
     if (maze[i - 1][j].wall === false) opt.push("U");
     if (maze[i][j + 1].wall === false) opt.push("R");
     if (maze[i][j - 1].wall === false) opt.push("L");
-    maze[i][j] = new Square(opt, false, null);
+    maze[i][j].options = opt
   }
 }
+
+console.log(maze)
 
 export { maze };

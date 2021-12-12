@@ -10,20 +10,18 @@ import LeftButton from "./Left";
 import RightButton from "./Right";
 import Loader from "react-js-loader";
 import Login from "./Login";
-import Winner from "./Winner"
+import Winner from "./Winner";
 import { maze } from "./walls";
 import "./maze.css";
 
 async function getUserData(db, user) {
   const docRef = doc(db, "users", user);
   getDoc(docRef).then((docSnap) => {
-    
     if (docSnap.exists()) {
-      
     } else {
       var v = Array(27)
         .fill(0)
-        .map((row) => new Array(27).fill(true));
+        .map((row) => new Array(27).fill(false));
       for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
           v[i][j] = true;
@@ -32,17 +30,19 @@ async function getUserData(db, user) {
       var flattened = v.reduce(function (a, b) {
         return a.concat(b);
       });
-      var sol = Array(115).fill(true)
-      sol[0] = true;
-      var d = new Date(0)
+      var sol = Array(115).fill(false);
+      for(let i=60;i<115;i++) sol[i] = true;
+      var d = new Date(0);
       setUserData(docRef, {
         visiblity: flattened,
         hero: [1, 0],
-        solved : sol,
-        penalty : 0,
-        click : true,
-        finished : false,
-        finishedTime : 0
+        solved: sol,
+        penalty: 0,
+        click: true,
+        finished: false,
+        finishedTime: 0,
+        key1: false,
+        key2: false,
       });
     }
   });
@@ -52,8 +52,8 @@ async function setUserData(docRef, data) {
   await setDoc(docRef, data);
 }
 
-async function updateUserData(docRef, data){
-  await updateDoc(docRef, data)
+async function updateUserData(docRef, data) {
+  await updateDoc(docRef, data);
 }
 
 function setData(data) {
@@ -63,7 +63,6 @@ function setData(data) {
   updateUserData(docRef, data);
 }
 
-
 function Maze() {
   const db = getFirestore();
   const user = sessionStorage.getItem("UID");
@@ -71,54 +70,56 @@ function Maze() {
   const [hero, setHero] = useState([]);
   const [loading, setLoading] = useState(true);
   const [click, setClick] = useState(true);
-  const [finished, setFinished] = useState(false); 
+  const [finished, setFinished] = useState(false);
+  const [key1, setKey1] = useState(false);
+  const [key2, setKey2] = useState(false);
+
   useEffect(() => {
-    var body = document.getElementsByTagName('body')
-    body.id = 'mazebody'
+    var body = document.getElementsByTagName("body");
+    body.id = "mazebody";
     const data = onSnapshot(doc(db, "users", user), (doc) => {
       var dat = doc.data();
       if (dat === undefined) {
-        
         getUserData(db, user);
       } else {
-        
         var v = dat.visiblity;
-        
+
         var state_arr = [];
         while (v.length) state_arr.push(v.splice(0, 27));
-        
+
         setVis(state_arr);
         setHero(dat.hero);
         setLoading(false);
-        setClick(dat.click)
-        setFinished(dat.finished)
+        setClick(dat.click);
+        setFinished(dat.finished);
+        setKey1(dat.key1);
+        setKey2(dat.key2);
       }
     });
     return () => data();
   }, []);
 
-  useEffect(()=>{
-    document.addEventListener('keydown', function(e) {
+  useEffect(() => {
+    document.addEventListener("keydown", function (e) {
       var ele;
-      if (e.key === 'ArrowUp') {
-        ele = document.getElementsByClassName('up')[0]
-        ele.click()
+      if (e.key === "ArrowUp") {
+        ele = document.getElementsByClassName("up")[0];
+        ele.click();
       }
-      if (e.key === 'ArrowDown') {
-        ele = document.getElementsByClassName('down')[0]
-        ele.click()
+      if (e.key === "ArrowDown") {
+        ele = document.getElementsByClassName("down")[0];
+        ele.click();
       }
-      if (e.key === 'ArrowLeft') {
-        ele = document.getElementsByClassName('left')[0]
-        ele.click()
+      if (e.key === "ArrowLeft") {
+        ele = document.getElementsByClassName("left")[0];
+        ele.click();
       }
-      if (e.key === 'ArrowRight') {
-        ele = document.getElementsByClassName('right')[0]
-        ele.click()
+      if (e.key === "ArrowRight") {
+        ele = document.getElementsByClassName("right")[0];
+        ele.click();
       }
-  });
-  },[])
-
+    });
+  }, []);
 
   if (loading) {
     return (
@@ -134,20 +135,19 @@ function Maze() {
         <Login />
       </div>
     );
-  } else if(finished){
+  } else if (finished) {
     return (
-    <div>
-      <Winner />
-    </div>
-    )
-  }
-  else {
+      <div>
+        <Winner />
+      </div>
+    );
+  } else {
     return (
       <div id="container">
         <div id="content-container">
-        <div class="stars"></div>
-        <div class="twinkling"></div>
-        <div class="clouds"></div>
+          <div class="stars"></div>
+          <div class="twinkling"></div>
+          <div class="clouds"></div>
           <div id="maze_container" key="maze_container">
             <div id="maze" key="maze">
               {maze.map(function (row, i) {
@@ -175,6 +175,32 @@ function Maze() {
                             key={String(i) + "-" + String(j)}
                           ></div>
                         );
+                      else if (maze[i][j].key === true) {
+                        if (i == 25 && j == 9 && key1 === false) {
+                          return (
+                            <div
+                              className="key"
+                              key={String(i) + "-" + String(j)}
+                            ></div>
+                          );
+                        } else if (i == 5 && j == 15 && key2 === false) {
+                          return (
+                            <div
+                              className="key"
+                              key={String(i) + "-" + String(j)}
+                            ></div>
+                          );
+                        } 
+                        else {
+                          return <div></div>;
+                        }
+                      } else if(i==25 && j==26){
+                        return (
+                          <div
+                            className="goal"
+                            key={String(i) + "-" + String(j)}
+                          ></div>);
+                      }  
                       else return <div></div>;
                     })}
                   </div>
@@ -183,32 +209,40 @@ function Maze() {
             </div>
           </div>
           <div className="buttoncon" key="buttoncon">
-            <UpButton 
-            hero={hero} 
-            vis={visiblity}
-            click={click}
-            setClick={setClick} 
-            setData={setData}
+            <UpButton
+              hero={hero}
+              vis={visiblity}
+              click={click}
+              key1={key1}
+              key2={key2}
+              setClick={setClick}
+              setData={setData}
             ></UpButton>
             <DownButton
               hero={hero}
               vis={visiblity}
               click={click}
-            setClick={setClick}
+              key1={key1}
+              key2={key2}
+              setClick={setClick}
               setData={setData}
             ></DownButton>
             <LeftButton
               hero={hero}
               vis={visiblity}
               click={click}
-            setClick={setClick}
+              key1={key1}
+              key2={key2}
+              setClick={setClick}
               setData={setData}
             ></LeftButton>
             <RightButton
               hero={hero}
               vis={visiblity}
               click={click}
-            setClick={setClick}
+              key1={key1}
+              key2={key2}
+              setClick={setClick}
               setData={setData}
             ></RightButton>
           </div>

@@ -70,6 +70,7 @@ function App() {
               />
             }
           />
+          
           <Route path="/maze" element={<Maze />} />
           <Route path="/error404" element={<Error />} />
         </Routes>

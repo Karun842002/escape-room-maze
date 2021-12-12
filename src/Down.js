@@ -119,7 +119,45 @@ class DownButton extends React.Component {
       };
       this.props.setData(data);
     })
+    if(this.state.pos===5 && this.props.hero[1]==15)
+      this.props.setData({key2:true})
   };
+
+  handleSkip = () => {
+    this.handleClose();
+
+    var hero = this.props.hero;
+    var pos = this.state.pos;
+    var vis = this.props.vis;
+    for (let i = -1; i <= 1; i++) {
+      for (let j = hero[0]; j <= pos + 1; j++) {
+        vis[j][hero[1] + i] = true;
+      }
+    }
+    var flattened = vis.reduce(function (a, b) {
+      return a.concat(b);
+    });
+    var key = String(pos)+'-'+String(hero[1])
+    var q = queMap.get(key)
+    const db = getFirestore();
+    const user = sessionStorage.getItem("UID");
+    getDoc(doc(db,"users",user)).then((doc)=>{
+      var data = doc.data()
+      var visited = data.solved;
+      var p = data.penalty + 10;
+      visited[parseInt(q)] = true
+      var data = {
+        visiblity: flattened,
+        hero: [this.state.pos, this.props.hero[1]],
+        solved : visited,
+        penalty : p
+      };
+      this.props.setData(data);
+    })
+    if(this.state.pos===5 && this.props.hero[1]==15)
+      this.props.setData({key2:true})
+  };
+
   handleDisagree = () => {
     this.handleClose();
     const db = getFirestore();
@@ -172,6 +210,9 @@ class DownButton extends React.Component {
             </Button>
             <Button onClick={(this.state.correct===4)?this.handleAgree:this.handleDisagree} color="primary">
             {this.state.option4}
+            </Button>
+            <Button onClick={this.handleSkip} color="primary">
+            Skip
             </Button>
           </DialogActions>
         </Dialog>

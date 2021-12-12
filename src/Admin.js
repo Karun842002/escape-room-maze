@@ -1,8 +1,9 @@
-import * as React from "react";
+import React from 'react'
+
 export default function Admin() {
   return (
-      <div>
-          
-      </div>
-  );
+    <div>
+      
+    </div>
+  )
 }

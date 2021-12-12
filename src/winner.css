@@ -1,0 +1,19 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fruktur&display=swap');
+#winner-container{
+    background-color : black;
+    color : white;
+    width: 100vw;
+    height: 100vh;
+}
+
+#text-container{
+    position: absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-family: 'Fruktur', cursive;
+    font-size: 10rem;
+    color: white;
+}

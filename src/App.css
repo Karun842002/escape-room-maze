@@ -46,6 +46,16 @@
   font-size: 1.5em;
 }
 
+#maze div.key::after {
+  content: "\1F511" !important;
+  font-size: 1em;
+}
+
+#maze div.goal::after {
+  content: "\1F6AA" !important;
+  font-size: 1em;
+}
+
 #maze div div.wall {
   background-color: #454545;
   background-image: linear-gradient(
