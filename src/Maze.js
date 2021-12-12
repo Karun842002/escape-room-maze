@@ -32,7 +32,7 @@ async function getUserData(db, user) {
         return a.concat(b);
       });
       var sol = Array(115).fill(false);
-      for(let i=60;i<115;i++) sol[i] = true;
+      for(let i=50;i<115;i++) sol[i] = true;
       var d = new Date(0);
       setUserData(docRef, {
         visiblity: flattened,

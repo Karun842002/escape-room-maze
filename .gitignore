@@ -26,3 +26,6 @@ package-lock.json
 creds.json
 
 question_helper.py
+creds.csv
+creds.txt
+questions.py
