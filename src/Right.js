@@ -174,7 +174,7 @@ class RightButton extends React.Component {
     getDoc(doc(db,"users",user)).then((doc)=>{
       var data = doc.data()
       var visited = data.solved;
-      var p = data.penalty + 10;
+      var p = data.penalty + 20;
       visited[parseInt(q)] = true
       var data = {
         visiblity: flattened,
