@@ -27,6 +27,7 @@ async function getUserData(db, user) {
           v[i][j] = true;
         }
       }
+      
       var flattened = v.reduce(function (a, b) {
         return a.concat(b);
       });
@@ -73,6 +74,7 @@ function Maze() {
   const [finished, setFinished] = useState(false);
   const [key1, setKey1] = useState(false);
   const [key2, setKey2] = useState(false);
+  const [penalty, setPenalty] = useState(0);
 
   useEffect(() => {
     var body = document.getElementsByTagName("body");
@@ -94,6 +96,7 @@ function Maze() {
         setFinished(dat.finished);
         setKey1(dat.key1);
         setKey2(dat.key2);
+        setPenalty(dat.penalty)
       }
     });
     return () => data();
@@ -145,6 +148,8 @@ function Maze() {
     return (
       <div id="container">
         <div id="content-container">
+        <div id="penalty">Penalty:{penalty}</div>
+        <div id="key-count">Keys Collected:{(key1?1:0)+(key2?1:0)}/2</div>
           <div class="stars"></div>
           <div class="twinkling"></div>
           <div class="clouds"></div>
@@ -154,13 +159,32 @@ function Maze() {
                 return (
                   <div key={String(i)}>
                     {row.map(function (col, j) {
-                      if (visiblity[i][j] === false)
-                        return (
-                          <div
-                            className="invisible"
-                            key={String(i) + "-" + String(j)}
-                          ></div>
-                        );
+                      if (visiblity[i][j] === false){
+                        if(maze[i][j].key===true){
+                          return (
+                            <div
+                              className="invisible key"
+                              key={String(i) + "-" + String(j)}
+                            ></div>
+                          );
+                        }
+                        else if(i==25 && j==26){
+                          return (
+                            <div
+                              className="invisible goal"
+                              key={String(i) + "-" + String(j)}
+                            ></div>
+                          );
+                        }
+                        else{
+                          return (
+                            <div
+                              className="invisible"
+                              key={String(i) + "-" + String(j)}
+                            ></div>
+                          );
+                        }
+                      }
                       else if (i === hero[0] && j === hero[1])
                         return (
                           <div

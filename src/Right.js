@@ -24,6 +24,7 @@ class RightButton extends React.Component {
     option4 : '',
     correct : '',
   };
+  
 
   handleClick = () => {
     if(this.props.click){
@@ -58,6 +59,8 @@ class RightButton extends React.Component {
         this.handleClickOpen();
       }
     })
+    }else{
+      alert('A Team Member has a question open!')
     }
   }
 
@@ -94,7 +97,15 @@ class RightButton extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({
+      open: false,
+      question : '',
+      option1 : '',
+      option2 : '',
+      option3 : '',
+      option4 : '',
+      correct : '',
+    });
     this.props.setClick(true)
     this.props.setData({click : true})
   };
@@ -209,14 +220,19 @@ class RightButton extends React.Component {
           RIGHT
         </a>
         {/* Dialog that is displayed if the state open is true */}
+        
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
+
         >
           <DialogTitle id="alert-dialog-title">
-          {"Question"}
+          <div>
+                {"Question"}
+                <img src='https://d30y9cdsu7xlg0.cloudfront.net/png/53504-200.png' style={{cursor:'pointer', float:'right', marginTop: '5px', width: '20px'}} onClick={this.handleClose}/>
+            </div>
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">

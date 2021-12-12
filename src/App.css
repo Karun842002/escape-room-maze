@@ -49,11 +49,13 @@
 #maze div.key::after {
   content: "\1F511" !important;
   font-size: 1em;
+  color: gold;
 }
 
 #maze div.goal::after {
   content: "\1F6AA" !important;
   font-size: 1em;
+  color: gold;
 }
 
 #maze div div.wall {
@@ -83,4 +85,14 @@
   justify-content: center;
   flex-direction: column;
   text-align: center;
+}
+
+#penalty{
+  color: white;
+  z-index : 50;
+}
+
+#key-count{
+  color: white;
+  z-index : 50;
 }
