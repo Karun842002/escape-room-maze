@@ -23,7 +23,7 @@ class UpButton extends React.Component {
   };
 
   handleClick = () => {
-    if(this.props.click){
+    if(true){
       var hero = this.props.hero;
       for (var j = hero[0]; j >= 0; j--) {
         if (
@@ -59,7 +59,7 @@ class UpButton extends React.Component {
   }
 
   handleClickOpen = () => {
-    if (this.props.click) {
+    if (true) {
       this.setState({ open: true });
       this.props.setData({click : false})
       this.props.setClick(false);

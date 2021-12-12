@@ -27,7 +27,7 @@ class RightButton extends React.Component {
   
 
   handleClick = () => {
-    if(this.props.click){
+    if(true){
       var hero = this.props.hero;
     for (var j = hero[1]; j < 27; j++) {
       if (j === 26) {
@@ -65,7 +65,7 @@ class RightButton extends React.Component {
   }
 
   handleClickOpen = () => {
-    if (this.props.click) {
+    if (true) {
       this.setState({ open: true });
       this.props.setClick(false)
       this.props.setData({click : false})
