@@ -61,7 +61,7 @@ def update_user_data(transaction, data):
             'SOLVED',
             'VISIBILITY'),
         values=[(
-            data["USER_ID"],
+            data['USER_ID'],
             data['CLICK'],
             data['FINISHED'],
             data['FINISHED_TIME'],
@@ -86,26 +86,29 @@ def create_user():
 
 @app.route('/update-user', methods=['POST'])
 def update_userdata():
-    data = request.json['data']
-    # data = {
-    #     "USER_ID": uid,
-    #     "CLICK": True,
-    #     "FINISHED": False,
-    #     "FINISHED_TIME": datetime.fromtimestamp(0),
-    #     "HERO": [11, 10],
-    #     "KEY1": False,
-    #     "KEY2": False,
-    #     "PENALTY": 0,
-    #     "SOLVED": [True]*115,
-    #     "VISIBILITY": [True] * 729
-    # }
-    database.run_in_transaction(update_user_data, data)
+    data = json.loads(request.data)
+    print(data)
+    data1 = {
+        "USER_ID": data["USER_ID"],
+        "CLICK": data["CLICK"],
+        "FINISHED": data["FINISHED"],
+        "FINISHED_TIME": datetime.fromtimestamp(0),
+        "HERO": data["HERO"],
+        "KEY1": data["KEY1"],
+        "KEY2": data["KEY2"],
+        "PENALTY": data["PENALTY"],
+        "SOLVED": data["SOLVED"],
+        "VISIBILITY": data["VISIBILITY"]
+    }
+    # date1 = data.get('FINISHED_TIME')
+    # print(type(date1))
+    # data["FINISHED_TIME"] = datetime.fromtimestamp(0)
+    database.run_in_transaction(update_user_data, data1)
     return ("Done", 200)
 
 
 @app.route('/get-user', methods=['POST'])
 def get_user_docs():
-    print(request.data)
     uid = json.loads(request.data)['uid']
     #uid = "1"
     found = False
@@ -118,20 +121,33 @@ def get_user_docs():
             found = True
 
     database.run_in_transaction(get_userdocs, uid)
-    if found :
+    if found:
         return ("Done", 200)
     return ("Not Done", 201)
 
-@app.route('/get-user-data', methods=['GET'])
+
+@app.route('/get-user-data', methods=['POST'])
 def get_user_data():
-    uid = request.json['uid']
+    uid = json.loads(request.data)['uid']
     data = None
+
     def get_userdocs(transaction, uid):
         nonlocal data
         sql = f'SELECT * FROM USERS WHERE USER_ID = "{uid}"'
         res = list(transaction.execute_sql(sql))
         if len(res) > 0:
-            data = res[0] 
-
+            data = res[0]
     database.run_in_transaction(get_userdocs, uid)
-    return (data,200)
+    data = {
+        "USER_ID": data[0],
+        "CLICK": data[1],
+        "FINISHED": data[2],
+        "FINISHED_TIME": datetime.timestamp(data[3]),
+        "HERO": data[4],
+        "KEY1": data[5],
+        "KEY2": data[6],
+        "PENALTY": data[7],
+        "SOLVED": data[8],
+        "VISIBILITY": data[9],
+    }
+    return (json.dumps(data), 200)

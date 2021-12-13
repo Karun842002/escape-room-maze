@@ -17,18 +17,16 @@ import axios from "axios";
 import "./maze.css";
 
 async function getUserData() {
-    axios.post('http://localhost:5000/create-user',JSON.stringify({
-        "uid": sessionStorage.getItem("UID")
-    })).then((response) => {
-        console.log(response)
-    });
-}
-
-async function setUserData() {
-    const response = await axios.post("http://localhost:5000/create-user", {
-        uid: sessionStorage.getItem("UID"),
-    });
-    console.log(response);
+    axios
+        .post(
+            "http://localhost:5000/create-user",
+            JSON.stringify({
+                uid: sessionStorage.getItem("UID"),
+            })
+        )
+        .then((response) => {
+            console.log(response);
+        });
 }
 
 async function updateUserData(docRef, data) {
@@ -37,10 +35,11 @@ async function updateUserData(docRef, data) {
 }
 
 function setData(data) {
-    const db = getFirestore();
-    const user = sessionStorage.getItem("UID");
-    const docRef = doc(db, "users", user);
-    updateUserData(docRef, data);
+    axios.post("http://localhost:5000/update-user", JSON.stringify(data), {
+        headers: {
+            "Content-Type": "text/plain",
+        },
+    });
 }
 
 function Maze() {
@@ -58,37 +57,50 @@ function Maze() {
     useEffect(() => {
         var body = document.getElementsByTagName("body");
         body.id = "mazebody";
-        console.log(sessionStorage.getItem("UID"))
-        axios.post('http://localhost:5000/get-user',JSON.stringify({"uid":sessionStorage.getItem("UID")}),{headers:{
-            'Content-Type': 'text/plain'
-        }}).then((response)=>{
-            if (response.status === 201) {
-                getUserData();
-            } else {
-                axios.get('http://localhost:5000/get-user-data',{
-                    "uid": sessionStorage.getItem("UID")
-                }).then((response)=>{
-                    console.log(response)
-                    // var v = response["data"]["VISIBILITY"];
-                    // var state_arr = [];
-                    // while (v.length) state_arr.push(v.splice(0, 27));
+        console.log(sessionStorage.getItem("UID"));
+        axios
+            .post(
+                "http://localhost:5000/get-user",
+                JSON.stringify({ uid: sessionStorage.getItem("UID") }),
+                {
+                    headers: {
+                        "Content-Type": "text/plain",
+                    },
+                }
+            )
+            .then((response) => {
+                if (response.status === 201) {
+                    getUserData();
+                } else {
+                    axios
+                        .post(
+                            "http://localhost:5000/get-user-data",
+                            JSON.stringify({
+                                uid: sessionStorage.getItem("UID"),
+                            }),
+                            {
+                                headers: {
+                                    "Content-Type": "text/plain",
+                                },
+                            }
+                        )
+                        .then((response) => {
+                            console.log(response.data);
+                            var v = response["data"]["VISIBILITY"];
+                            var state_arr = [];
+                            while (v.length) state_arr.push(v.splice(0, 27));
 
-                    // setVis(state_arr);
-                    // setHero(dat.hero);
-                    // setLoading(false);
-                    // setClick(dat.click);
-                    // setFinished(dat.finished);
-                    // setKey1(dat.key1);
-                    // setKey2(dat.key2);
-                    // setPenalty(dat.penalty);
-                })
-            }
-        })
-        const data = onSnapshot(doc(db, "users", user), (doc) => {
-            var dat = doc.data();
-            
-        });
-        return () => data();
+                            setVis(state_arr);
+                            setHero(response["data"]["HERO"]);
+                            setLoading(false);
+                            setClick(response["data"]["CLICK"]);
+                            setFinished(response["data"]["FINISHED"]);
+                            setKey1(response["data"]["KEY1"]);
+                            setKey2(response["data"]["KEY2"]);
+                            setPenalty(response["data"]["PENALTY"]);
+                        });
+                }
+            });
     }, []);
 
     useEffect(() => {
