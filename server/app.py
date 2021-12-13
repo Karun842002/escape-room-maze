@@ -103,10 +103,11 @@ def update_userdata():
     return ("Done", 200)
 
 
-@app.route('/get-user', methods=['GET'])
+@app.route('/get-user', methods=['POST'])
 def get_user_docs():
-    print(request.json)
-    uid = request.json['uid']
+    print(request.data)
+    uid = json.loads(request.data)['uid']
+    #uid = "1"
     found = False
 
     def get_userdocs(transaction, uid):
