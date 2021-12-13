@@ -29,3 +29,6 @@ question_helper.py
 creds.csv
 creds.txt
 questions.py
+
+env 
+__pycache__

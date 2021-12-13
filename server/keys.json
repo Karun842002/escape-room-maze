@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "the-labyrinth-breaker",
+  "private_key_id": "5d36a642d55aaccb40f055839e2f9073e34e54c0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCxBJowNC8SHyNB\nJzsp15PldOMe/HTwt4XTfNJSt5B/usHzpNQeON1m2l8hHXPWbxEkJLiek2kkMN6M\n/Bg+K73UL5uR8mTPgJ/cnv7DAkny0pLhPMYJZTaezMy5YifVN04zuHiEPjj91yDo\nbYT3Fv4MjXIkFV88FFv60tUoRjdd+nNag7xToATpB221av/fJf90w2rxsyN9qm1r\n+j42YLxbV52idNKq1fHpraPt0rfCladt7PhKv+cFQGAZDoC15KMzMLa5vQ3SYHOy\ng5GhZDYidzx97IraR7ZTDsIie5AoNiTnQVAsY6hLl6Voloed+1co5w26zTXnfZv9\nthoZz2vzAgMBAAECggEAAQneX7cGqawOGGVDBxlRMFDxvi5L/1eMTPPYBg02p1Ew\nrx3B8tVxkxdn5HlYQyNOrfAbNy71OHWi8J/QApleGT8YQhByf/couPIj24AJcAfF\nPdYN8WMrIV5hOxs00Z7r8gi8iEYXLoITGtn9pDd50RgJWeXYM7GI4p1XC8/xpjb9\n8GE9Qlr2Y8QlFa7s2x7J7NuBt/jAQNP4puF7PQZtIDpF0u+Nvynqnr/nf5IGanpI\nOSOhOm+oci4VI/Kuzo4Z8iPrtdYzalIScwgssp8RyfHBPswkdEQ/hgVVd+uI7NVi\nOs+e+IXmgkfBwkn1hEStoLm1EzQR2epIEJST2VueWQKBgQDsEQdMg7CxHgPHGcji\na1zpo2L+h5KkPsNLzFU3T0fsQB0m19lpDRV08X4+/HpmC5IZRbe9Fmkt/JRJ86al\nwGuYaEhPj+WEhASiSvDxoEVljy/ugaFFMVfDJjj/WKLNE3BqCLehVSyL1sJR/DV+\nGq3gzEun0s/dPBW6p+g61nz3ywKBgQC/9yQgL6mWjbzXqJwYwutX97SYtGJC8DBh\n+MXnmxYMl3eu6aXxoKOrdwD0xbg0FcIsVj75PxE5pB4OzU4NZrhK4aJCtLhoqunJ\nWIJ+LzctHLyxJ6VSCa0tQOdpZvkoCZTAZiChwv5/NRKNpn3Lxmso3DepNh/ufAuu\nKRnR/W9HeQKBgBCozvwOWxzUwm19m1inPQJb/nN5+9ZNe5jQzb6+gJPinmwMVZJ9\nUuNS25b0WGr1LBVOfz3/4+JT7d8eK8eMwcsaqOe8fvUQIAeYBFL4/YzCQx6w1UG9\nzrS98M3MYojYc1l4TgU7ro4b1NDWXKwOk/DGWhx42ySAxgPLL69fTahrAoGBALAh\nbwkFEkHrzF/G+WoSteJhiVcu8pVeUdYiblrBxepJs2tOP47CiElTiBINs6Q+bolF\nnMQN5J0Rgu6r2ribDe7OtZUkwapvXs/5oMlsQuDmZA7bRGlQLY++5FSmQWdF2zDo\nw3oIMn++z0Yeg39Lj5jO7VcZLRUgxYrHdURhlw9pAoGBAIAtZggbsglyP4WgRuKJ\nNvNKMgA26U5CGOfNOPqBGGvSYnJzCkWUUjB4z2pSk2WGIRiEaK8f+l2L5ReKBDJw\nf5+81Z00SCDnX3ZFBvYR2r3ovIDENPQJAj5OqxEgQbTjfQB2CaxF0doV91gw0dsA\naqWmaGHEV2Ipu1/raE6fQmWZ\n-----END PRIVATE KEY-----\n",
+  "client_email": "flask-server@the-labyrinth-breaker.iam.gserviceaccount.com",
+  "client_id": "100054264922859540807",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/flask-server%40the-labyrinth-breaker.iam.gserviceaccount.com"
+}
