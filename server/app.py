@@ -3,10 +3,12 @@ from google.cloud import spanner
 from flask import request
 import json
 from datetime import datetime
-
+from flask_cors import CORS
 from werkzeug.wrappers import response
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 spanner_client = spanner.Client()
 instance = spanner_client.instance('react-instance')
@@ -103,6 +105,7 @@ def update_userdata():
 
 @app.route('/get-user', methods=['GET'])
 def get_user_docs():
+    print(request.json)
     uid = request.json['uid']
     found = False
 
@@ -116,4 +119,18 @@ def get_user_docs():
     database.run_in_transaction(get_userdocs, uid)
     if found :
         return ("Done", 200)
-    return ("Not Done", 200)
+    return ("Not Done", 201)
+
+@app.route('/get-user-data', methods=['GET'])
+def get_user_data():
+    uid = request.json['uid']
+    data = None
+    def get_userdocs(transaction, uid):
+        nonlocal data
+        sql = f'SELECT * FROM USERS WHERE USER_ID = "{uid}"'
+        res = list(transaction.execute_sql(sql))
+        if len(res) > 0:
+            data = res[0] 
+
+    database.run_in_transaction(get_userdocs, uid)
+    return (data,200)
