@@ -17,9 +17,9 @@ import axios from "axios";
 import "./maze.css";
 
 async function getUserData() {
-    axios.post('http://localhost:5000/create-user',{
+    axios.post('http://localhost:5000/create-user',JSON.stringify({
         "uid": sessionStorage.getItem("UID")
-    }).then((response) => {
+    })).then((response) => {
         console.log(response)
     });
 }
@@ -59,9 +59,9 @@ function Maze() {
         var body = document.getElementsByTagName("body");
         body.id = "mazebody";
         console.log(sessionStorage.getItem("UID"))
-        axios.get('http://localhost:5000/get-user',{
-            "uid": sessionStorage.getItem("UID")
-        }).then((response)=>{
+        axios.post('http://localhost:5000/get-user',JSON.stringify({"uid":sessionStorage.getItem("UID")}),{headers:{
+            'Content-Type': 'text/plain'
+        }}).then((response)=>{
             if (response.status === 201) {
                 getUserData();
             } else {
