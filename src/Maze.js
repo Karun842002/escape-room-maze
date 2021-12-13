@@ -16,45 +16,16 @@ import axios from "axios";
 
 import "./maze.css";
 
-async function getUserData(db, user) {
-    const docRef = doc(db, "users", user);
-
-    getDoc(docRef).then((docSnap) => {
-        if (docSnap.exists()) {
-        } else {
-            var v = Array(27)
-                .fill(0)
-                .map((row) => new Array(27).fill(false));
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 3; j++) {
-                    v[i][j] = true;
-                }
-            }
-
-            var flattened = v.reduce(function (a, b) {
-                return a.concat(b);
-            });
-            var sol = Array(115).fill(false);
-            for (let i = 50; i < 115; i++) sol[i] = true;
-            var d = new Date(0);
-            setUserData(docRef, {
-                visiblity: flattened,
-                hero: [1, 0],
-                solved: sol,
-                penalty: 0,
-                click: true,
-                finished: false,
-                finishedTime: 0,
-                key1: false,
-                key2: false,
-            });
-        }
+async function getUserData() {
+    axios.post('http://localhost:5000/create-user',{
+        "uid": sessionStorage.getItem("UID")
+    }).then((response) => {
+        console.log(response)
     });
 }
 
 async function setUserData() {
-    // DB new User create
-    const response = await axios.post("localhost:5000/create-user", {
+    const response = await axios.post("http://localhost:5000/create-user", {
         uid: sessionStorage.getItem("UID"),
     });
     console.log(response);
@@ -87,24 +58,35 @@ function Maze() {
     useEffect(() => {
         var body = document.getElementsByTagName("body");
         body.id = "mazebody";
+        console.log(sessionStorage.getItem("UID"))
+        axios.get('http://localhost:5000/get-user',{
+            "uid": sessionStorage.getItem("UID")
+        }).then((response)=>{
+            if (response.status === 201) {
+                getUserData();
+            } else {
+                axios.get('http://localhost:5000/get-user-data',{
+                    "uid": sessionStorage.getItem("UID")
+                }).then((response)=>{
+                    console.log(response)
+                    // var v = response["data"]["VISIBILITY"];
+                    // var state_arr = [];
+                    // while (v.length) state_arr.push(v.splice(0, 27));
+
+                    // setVis(state_arr);
+                    // setHero(dat.hero);
+                    // setLoading(false);
+                    // setClick(dat.click);
+                    // setFinished(dat.finished);
+                    // setKey1(dat.key1);
+                    // setKey2(dat.key2);
+                    // setPenalty(dat.penalty);
+                })
+            }
+        })
         const data = onSnapshot(doc(db, "users", user), (doc) => {
             var dat = doc.data();
-            if (dat === undefined) {
-                getUserData(db, user);
-            } else {
-                var v = dat.visiblity;
-                var state_arr = [];
-                while (v.length) state_arr.push(v.splice(0, 27));
-
-                setVis(state_arr);
-                setHero(dat.hero);
-                setLoading(false);
-                setClick(dat.click);
-                setFinished(dat.finished);
-                setKey1(dat.key1);
-                setKey2(dat.key2);
-                setPenalty(dat.penalty);
-            }
+            
         });
         return () => data();
     }, []);

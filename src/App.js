@@ -52,7 +52,6 @@ function App() {
     let authToken = sessionStorage.getItem("Auth Token");
     if (authToken) {
       navigate("/maze");
-      
     }
   }, [navigate]);
 
