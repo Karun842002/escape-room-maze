@@ -53,7 +53,7 @@ class RightButton extends React.Component {
       const user = sessionStorage.getItem("UID");
       axios
         .post(
-          "http://localhost:8000/get-user-data",
+          "http://localhost:5000/get-user-data",
           JSON.stringify({
             uid: user,
           }),
@@ -87,7 +87,7 @@ class RightButton extends React.Component {
     var user = sessionStorage.getItem("UID")
     axios
       .post(
-        "http://localhost:8000/get-user-data",
+        "http://localhost:5000/get-user-data",
         JSON.stringify({
           uid: user,
         }),
@@ -157,7 +157,7 @@ class RightButton extends React.Component {
     var data = {};
     axios
       .post(
-        "http://localhost:8000/get-user-data",
+        "http://localhost:5000/get-user-data",
         JSON.stringify({
           uid: user,
         }),
@@ -207,7 +207,7 @@ class RightButton extends React.Component {
     var data1 = {};
     axios
       .post(
-        "http://localhost:8000/get-user-data",
+        "http://localhost:5000/get-user-data",
         JSON.stringify({
           uid: user,
         }),
@@ -286,7 +286,7 @@ class RightButton extends React.Component {
     var data1 = {};
     axios
       .post(
-        "http://localhost:8000/get-user-data",
+        "http://localhost:5000/get-user-data",
         JSON.stringify({
           uid: user,
         }),
@@ -350,7 +350,7 @@ class RightButton extends React.Component {
     const user = sessionStorage.getItem("UID");
     axios
       .post(
-        "http://localhost:8000/get-user-data",
+        "http://localhost:5000/get-user-data",
         JSON.stringify({
           uid: user,
         }),
