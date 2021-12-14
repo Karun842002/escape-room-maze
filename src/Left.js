@@ -13,7 +13,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import { maze } from "./walls";
 import { queMap } from "./questionMap"
-
+import axios from "axios";
 class LeftButton extends React.Component {
   state = {
     open: false,
@@ -48,21 +48,30 @@ class LeftButton extends React.Component {
     var q = queMap.get(key)
     const db = getFirestore();
     const user = sessionStorage.getItem("UID");
-    getDoc(doc(db,"users",user)).then((doc)=>{
-      var data = doc.data()
-      var visited = data.solved;
-      if(visited[parseInt(q)]===true){
-        this.handleAgree();
-        this.setState({ pos: j });
-        console.log(key,'dest-visited')
-      }
-      else{
-        this.handleClickOpen();
-        console.log(key,'dest-not-visited')
-      }
-    })
-    }
-    else{
+    axios
+        .post(
+          "http://localhost:8000/get-user-data",
+          JSON.stringify({
+            uid: user,
+          }),
+          {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          var data = response.data;
+          var visited = data.SOLVED;
+          if (visited[parseInt(q)] === true) {
+            this.setState({ pos: j });
+            this.handleAgree();
+          } else {
+            this.handleClickOpen();
+          }
+        });
+    } else{
       alert('A Team Member has a question open!')
     }
   }
@@ -71,7 +80,37 @@ class LeftButton extends React.Component {
     if (true) {
       this.setState({ open: true });
       this.props.setClick(false)
-      this.props.setData({click : false})
+      var data = {};
+    var user = sessionStorage.getItem("UID")
+    axios
+      .post(
+        "http://localhost:8000/get-user-data",
+        JSON.stringify({
+          uid: user,
+        }),
+        {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        }
+      )
+      .then((response) => {
+        data = response.data;
+      });
+    var data1 = {
+      USER_ID: sessionStorage.getItem("UID"),
+      CLICK: true,
+      FINISHED: data.FINISHED,
+      FINISHED_TIME: data.FINISHED_TIME,
+      HERO: data.HERO,
+      KEY1: data.KEY1,
+      KEY2: data.KEY2,
+      PENALTY: data.PENALTY,
+      SOLVED: data.SOLVED,
+      VISIBILITY: data.VISIBILITY,
+      SOURCE : 'handle_click_open'
+    };
+    this.props.setData(data1,this.props.setSt);
     var hero = this.props.hero;
     for (var j = hero[1]; j >= 0; j--) {
       if (j === 0) {
@@ -111,7 +150,37 @@ class LeftButton extends React.Component {
       correct : '',
     });
     this.props.setClick(true)
-    this.props.setData({click : true})
+    var data = {};
+    var user = sessionStorage.getItem("UID")
+    axios
+      .post(
+        "http://localhost:8000/get-user-data",
+        JSON.stringify({
+          uid: user,
+        }),
+        {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        }
+      )
+      .then((response) => {
+        var data = response.data;
+        var data1 = {
+          USER_ID: sessionStorage.getItem("UID"),
+          CLICK: true,
+          FINISHED: data.FINISHED,
+          FINISHED_TIME: data.FINISHED_TIME,
+          HERO: data.HERO,
+          KEY1: data.KEY1,
+          KEY2: data.KEY2,
+          PENALTY: data.PENALTY,
+          SOLVED: data.SOLVED,
+          VISIBILITY: data.VISIBILITY,
+          SOURCE : 'handle_close',
+        };
+        this.props.setData(data1,this.props.setSt);
+      });
   };
 
   handleAgree = () => {
@@ -133,17 +202,39 @@ class LeftButton extends React.Component {
     const db = getFirestore();
     const user = sessionStorage.getItem("UID");
     console.log(pos)
-    getDoc(doc(db,"users",user)).then((doc)=>{
-      var data = doc.data()
-      var visited = data.solved;
-      visited[parseInt(q)] = true
-      var data = {
-        visiblity: flattened,
-        hero: [this.props.hero[0], this.state.pos],
-        solved : visited
-      };
-      this.props.setData(data);
-    })
+    var data1 = {};
+    axios
+      .post(
+        "http://localhost:8000/get-user-data",
+        JSON.stringify({
+          uid: user,
+        }),
+        {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        var data = response.data;
+        var visited = data.SOLVED;
+        visited[parseInt(q)] = true;
+        data1 = {
+          USER_ID: sessionStorage.getItem("UID"),
+          CLICK: data.CLICK,
+          FINISHED: data.FINISHED,
+          FINISHED_TIME: data.FINISHED_TIME,
+          HERO: [this.props.hero[0], this.state.pos],
+          KEY1: data.KEY1,
+          KEY2: data.KEY2,
+          PENALTY: data.PENALTY,
+          SOLVED: visited,
+          VISIBILITY: flattened,
+          SOURCE : 'handle_agree'
+        };
+        this.props.setData(data1,this.props.setSt);
+      });
   };
 
   handleSkip = () => {
@@ -164,35 +255,75 @@ class LeftButton extends React.Component {
     var q = queMap.get(key)
     const db = getFirestore();
     const user = sessionStorage.getItem("UID");
-    console.log(pos)
-    getDoc(doc(db,"users",user)).then((doc)=>{
-      var data = doc.data()
-      var visited = data.solved;
-      var p = data.penalty + 20;
-      visited[parseInt(q)] = true
-      var data = {
-        visiblity: flattened,
-        hero: [this.props.hero[0], this.state.pos],
-        solved : visited,
-        penalty : p
-      };
-      this.props.setData(data);
-    })
+    var data1 = {};
+    axios
+      .post(
+        "http://localhost:8000/get-user-data",
+        JSON.stringify({
+          uid: user,
+        }),
+        {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        }
+      )
+      .then((response) => {
+        var data = response.data;
+        var visited = data.SOLVED;
+        var p = data.PENALTY + 20;
+        visited[parseInt(q)] = true;
+        data1 = {
+          USER_ID: sessionStorage.getItem("UID"),
+          CLICK: data.click,
+          KEY1: data.KEY1,
+          KEY2: data.KEY2,
+          VISIBILITY: flattened,
+          HERO: [this.props.hero[0], this.state.pos],
+          SOLVED: visited,
+          PENALTY: p,
+          FINISHED: data.FINISHED,
+          FINISHED_TIME: data.FINISHED_TIME,
+          SOURCE : 'handle_skip',
+        };
+        this.props.setData(data1,this.props.setSt);
+      });
   };
 
   handleDisagree = () => {
     this.handleClose();
     const db = getFirestore();
     const user = sessionStorage.getItem("UID");
-    getDoc(doc(db,"users",user)).then((doc)=>{
-      var data = doc.data()
-      var pen = data.penalty;
-      pen+=1
-      var data = {
-        penalty : pen
-      };
-      this.props.setData(data);
-    })
+    axios
+      .post(
+        "http://localhost:8000/get-user-data",
+        JSON.stringify({
+          uid: user,
+        }),
+        {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        }
+      )
+      .then((response) => {
+        var data = response.data;
+        var p = data.PENALTY + 1;
+        var data1 = {
+          USER_ID: sessionStorage.getItem("UID"),
+          CLICK: data.click,
+          KEY1: data.KEY1,
+          KEY2: data.KEY2,
+          VISIBILITY: data.VISIBILITY,
+          HERO: data.HERO,
+          SOLVED: data.SOLVED,
+          PENALTY: p,
+          FINISHED: data.FINISHED,
+          FINISHED_TIME: data.FINISHED_TIME,
+          SOURCE : 'handle_disagree',
+        };
+        this.props.setData(data1,this.props.setSt);
+      });
   };
   render() {
     return (

@@ -5,7 +5,8 @@ import json
 from datetime import datetime
 from flask_cors import CORS
 from werkzeug.wrappers import response
-
+import logging
+import os
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -14,6 +15,24 @@ spanner_client = spanner.Client()
 instance = spanner_client.instance('react-instance')
 database = instance.database('react-database')
 
+
+@app.before_first_request
+def before_first_request():
+    log_level = logging.INFO
+ 
+    for handler in app.logger.handlers:
+        app.logger.removeHandler(handler)
+ 
+    root = os.path.dirname(os.path.abspath(__file__))
+    logdir = os.path.join(root, 'logs')
+    if not os.path.exists(logdir):
+        os.mkdir(logdir)
+    log_file = os.path.join(logdir, 'app.log')
+    handler = logging.FileHandler(log_file)
+    handler.setLevel(log_level)
+    app.logger.addHandler(handler)
+ 
+    app.logger.setLevel(log_level)
 
 @app.route("/")
 def hello_world():
@@ -87,23 +106,9 @@ def create_user():
 @app.route('/update-user', methods=['POST'])
 def update_userdata():
     data = json.loads(request.data)
-    print(data)
-    data1 = {
-        "USER_ID": data["USER_ID"],
-        "CLICK": data["CLICK"],
-        "FINISHED": data["FINISHED"],
-        "FINISHED_TIME": datetime.fromtimestamp(0),
-        "HERO": data["HERO"],
-        "KEY1": data["KEY1"],
-        "KEY2": data["KEY2"],
-        "PENALTY": data["PENALTY"],
-        "SOLVED": data["SOLVED"],
-        "VISIBILITY": data["VISIBILITY"]
-    }
-    # date1 = data.get('FINISHED_TIME')
-    # print(type(date1))
-    # data["FINISHED_TIME"] = datetime.fromtimestamp(0)
-    database.run_in_transaction(update_user_data, data1)
+    print(data["HERO"])
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+    database.run_in_transaction(update_user_data, data)
     return ("Done", 200)
 
 

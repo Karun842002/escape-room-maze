@@ -1,0 +1,5 @@
+127.0.0.1 - - [14/Dec/2021 09:56:08] "POST /get-user-data HTTP/1.1" 200 -
+127.0.0.1 - - [14/Dec/2021 09:56:08] "POST /get-user-data HTTP/1.1" 200 -
+127.0.0.1 - - [14/Dec/2021 09:56:08] "POST /update-user HTTP/1.1" 500 -
+127.0.0.1 - - [14/Dec/2021 09:56:09] "POST /get-user-data HTTP/1.1" 200 -
+127.0.0.1 - - [14/Dec/2021 09:56:09] "POST /update-user HTTP/1.1" 200 -
