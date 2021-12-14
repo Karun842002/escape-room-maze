@@ -1,15 +1,20 @@
-from flask import Flask
 from google.cloud import spanner
-from flask import request
+from quart import Quart, g, request
 import json
 from datetime import datetime
-from flask_cors import CORS
+from quart_cors import cors
 from werkzeug.wrappers import response
 import logging
+from flask_executor import Executor
 import os
-app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+from dotenv import load_dotenv
+load_dotenv()
+
+app = Quart(__name__)
+cors(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+# executor = Executor(app)
+# app.config['EXECUTOR_TYPE'] = 'thread'
 
 spanner_client = spanner.Client()
 instance = spanner_client.instance('react-instance')
@@ -19,10 +24,10 @@ database = instance.database('react-database')
 @app.before_first_request
 def before_first_request():
     log_level = logging.INFO
- 
+
     for handler in app.logger.handlers:
         app.logger.removeHandler(handler)
- 
+
     root = os.path.dirname(os.path.abspath(__file__))
     logdir = os.path.join(root, 'logs')
     if not os.path.exists(logdir):
@@ -31,11 +36,12 @@ def before_first_request():
     handler = logging.FileHandler(log_file)
     handler.setLevel(log_level)
     app.logger.addHandler(handler)
- 
+
     app.logger.setLevel(log_level)
 
+
 @app.route("/")
-def hello_world():
+async def hello_world():
     return "<p>Hello, World!</p>"
 
 
@@ -97,15 +103,18 @@ def update_user_data(transaction, data):
 
 
 @app.route('/create-user', methods=['POST'])
-def create_user():
-    uid = request.json['uid']
+async def create_user():
+    req = await request.json
+    print(req)
+    uid = req['uid']
     database.run_in_transaction(insert_users, uid)
     return ("Done", 200)
 
 
 @app.route('/update-user', methods=['POST'])
-def update_userdata():
-    data = json.loads(request.data)
+async def update_userdata():
+    data = await request.data
+    data = json.loads(data)
     print(data["HERO"])
     data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
     database.run_in_transaction(update_user_data, data)
@@ -113,8 +122,9 @@ def update_userdata():
 
 
 @app.route('/get-user', methods=['POST'])
-def get_user_docs():
-    uid = json.loads(request.data)['uid']
+async def get_user_docs():
+    data = await request.data
+    uid = json.loads(data)['uid']
     #uid = "1"
     found = False
 
@@ -132,8 +142,9 @@ def get_user_docs():
 
 
 @app.route('/get-user-data', methods=['POST'])
-def get_user_data():
-    uid = json.loads(request.data)['uid']
+async def get_user_data():
+    data = await request.data
+    uid = json.loads(data)['uid']
     data = None
 
     def get_userdocs(transaction, uid):
@@ -156,3 +167,7 @@ def get_user_data():
         "VISIBILITY": data[9],
     }
     return (json.dumps(data), 200)
+
+
+if __name__ == "__main__":
+    app.run(threaded=True, debug=True)
