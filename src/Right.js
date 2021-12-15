@@ -65,7 +65,7 @@ class RightButton extends React.Component {
         )
         .then((response) => {
           console.log(response);
-          var data = response.data;
+          var data = JSON.parse(response.data);
           var visited = data.SOLVED;
           if (visited[parseInt(q)] === true) {
             this.setState({ pos: j });
@@ -98,7 +98,7 @@ class RightButton extends React.Component {
         }
       )
       .then((response) => {
-        data = response.data;
+        data = JSON.parse(response.data);
       });
     var data1 = {
       USER_ID: sessionStorage.getItem("UID"),
@@ -151,43 +151,11 @@ class RightButton extends React.Component {
       option4: "",
       correct: "",
     });
-    this.props.setClick(true);
-
-    const user = sessionStorage.getItem("UID");
-    var data = {};
-    axios
-      .post(
-        "http://localhost:5000/get-user-data",
-        JSON.stringify({
-          uid: user,
-        }),
-        {
-          headers: {
-            "Content-Type": "text/plain",
-          },
-        }
-      )
-      .then((response) => {
-        data = response.data;
-        var data1 = {
-          USER_ID: sessionStorage.getItem("UID"),
-          CLICK: true,
-          FINISHED: data.FINISHED,
-          FINISHED_TIME: data.FINISHED_TIME,
-          HERO: data.HERO,
-          KEY1: data.KEY1,
-          KEY2: data.KEY2,
-          PENALTY: data.PENALTY,
-          SOLVED: data.SOLVED,
-          VISIBILITY: data.VISIBILITY,
-        };
-        this.props.setData(data1,this.props.setSt);
-      });
   };
 
   handleAgree = () => {
     this.handleClose();
-
+    this.props.setClick(true);
     var hero = this.props.hero;
     var pos = this.state.pos;
     var vis = this.props.vis;
@@ -219,49 +187,49 @@ class RightButton extends React.Component {
       )
       .then((response) => {
         console.log(response);
-        var data = response.data;
+        var data = JSON.parse(response.data);
         var visited = data.SOLVED;
         visited[parseInt(q)] = true;
-        data1 = {
+        if (this.state.pos === 26 && this.props.key1 && this.props.key2)
+        this.props.setData({
           USER_ID: sessionStorage.getItem("UID"),
-          CLICK: data.CLICK,
-          FINISHED: data.FINISHED,
-          FINISHED_TIME: data.FINISHED_TIME,
+          CLICK: true,
           HERO: [this.props.hero[0], this.state.pos],
           KEY1: data.KEY1,
           KEY2: data.KEY2,
           PENALTY: data.PENALTY,
           SOLVED: visited,
           VISIBILITY: flattened,
-        };
-        this.props.setData(data1,this.props.setSt);
-      });
-    if (this.state.pos === 26 && this.props.key1 && this.props.key2)
-      this.props.setData({
+          FINISHED: true,
+          FINISHED_TIME: Date.now(),
+        },this.props.setSt);
+        else if (this.props.hero[0] === 25 && this.state.pos === 9)
+        this.props.setData({
         USER_ID: sessionStorage.getItem("UID"),
-        CLICK: data1.CLICK,
-        HERO: data1.HERO,
-        KEY1: data1.KEY1,
-        KEY2: data1.KEY2,
-        PENALTY: data1.PENALTY,
-        SOLVED: data1.SOLVED,
-        VISIBILITY: data1.VISIBILITY,
-        FINISHED: true,
-        FINISHED_TIME: Date.now(),
-      },this.props.setSt);
-    if (this.props.hero[0] === 25 && this.state.pos === 9)
-      this.props.setData({
-        USER_ID: sessionStorage.getItem("UID"),
-        CLICK: data1.CLICK,
-        HERO: data1.HERO,
+        CLICK: true,
+        HERO: [this.props.hero[0], this.state.pos],
         KEY1: true,
-        KEY2: data1.KEY2,
-        PENALTY: data1.PENALTY,
-        SOLVED: data1.SOLVED,
-        VISIBILITY: data1.VISIBILITY,
-        FINISHED: data1.FINISHED,
-        FINISHED_TIME: data1.FINISHED_TIME,
-      },this.props.setSt);
+        KEY2: data.KEY2,
+        PENALTY: data.PENALTY,
+        SOLVED: visited,
+        VISIBILITY: flattened,
+        FINISHED: data.FINISHED,
+        FINISHED_TIME: data.FINISHED_TIME,
+        },this.props.setSt);
+        else
+        this.props.setData({
+          USER_ID: sessionStorage.getItem("UID"),
+          CLICK: true,
+          HERO: [this.props.hero[0], this.state.pos],
+          KEY1: data.KEY1,
+          KEY2: data.KEY2,
+          PENALTY: data.PENALTY,
+          SOLVED: visited,
+          VISIBILITY: flattened,
+          FINISHED: data.FINISHED,
+          FINISHED_TIME: data.FINISHED_TIME,
+        },this.props.setSt);
+        });
   };
 
   handleSkip = () => {
@@ -297,13 +265,13 @@ class RightButton extends React.Component {
         }
       )
       .then((response) => {
-        var data = response.data;
+        var data = JSON.parse(response.data);
         var visited = data.SOLVED;
         var p = data.PENALTY + 20;
         visited[parseInt(q)] = true;
         data1 = {
           USER_ID: sessionStorage.getItem("UID"),
-          CLICK: data.click,
+          CLICK: true,
           KEY1: data.KEY1,
           KEY2: data.KEY2,
           VISIBILITY: flattened,
@@ -314,9 +282,7 @@ class RightButton extends React.Component {
           FINISHED_TIME: data.FINISHED_TIME,
         };
         this.props.setData(data1,this.props.setSt);
-      });
-
-    if (this.state.pos === 26 && this.props.key1 && this.props.key2)
+        if (this.state.pos === 26 && this.props.key1 && this.props.key2)
       this.props.setData({
         USER_ID: sessionStorage.getItem("UID"),
         CLICK: data1.CLICK,
@@ -342,6 +308,7 @@ class RightButton extends React.Component {
         FINISHED: data1.FINISHED,
         FINISHED_TIME: data1.FINISHED_TIME,
       },this.props.setSt);
+      });
   };
 
   handleDisagree = () => {
@@ -361,7 +328,7 @@ class RightButton extends React.Component {
         }
       )
       .then((response) => {
-        var data = response.data;
+        var data = JSON.parse(response.data);
         var p = data.PENALTY + 1;
         var data1 = {
           USER_ID: sessionStorage.getItem("UID"),

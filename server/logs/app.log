@@ -2,4 +2,760 @@
 127.0.0.1 - - [14/Dec/2021 09:56:08] "POST /get-user-data HTTP/1.1" 200 -
 127.0.0.1 - - [14/Dec/2021 09:56:08] "POST /update-user HTTP/1.1" 500 -
 127.0.0.1 - - [14/Dec/2021 09:56:09] "POST /get-user-data HTTP/1.1" 200 -
-127.0.0.1 - - [14/Dec/2021 09:56:09] "POST /update-user HTTP/1.1" 200 -
+127.0.0.1 - - [14/Dec/2021 09:56:09] "POST /update-user HTTP/1.1" 200 -Exception on /update-user [POST]
+Traceback (most recent call last):
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask_cors\extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 109, in update_userdata
+    print(data["HERO"])
+KeyError: 'HERO'
+Exception on /update-user [POST]
+Traceback (most recent call last):
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask_cors\extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 109, in update_userdata
+    print(data["HERO"])
+KeyError: 'HERO'
+Exception on /update-user [POST]
+Traceback (most recent call last):
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask_cors\extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 111, in update_userdata
+    database.run_in_transaction(update_user_data, data)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\google\cloud\spanner_v1\database.py", line 658, in run_in_transaction
+    return session.run_in_transaction(func, *args, **kw)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\google\cloud\spanner_v1\session.py", line 357, in run_in_transaction
+    return_value = func(txn, *args, **kw)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 84, in update_user_data
+    data['CLICK'],
+KeyError: 'CLICK'
+Exception on /update-user [POST]
+Traceback (most recent call last):
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask_cors\extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 109, in update_userdata
+    print(data["HERO"])
+KeyError: 'HERO'
+Exception on /update-user [POST]
+Traceback (most recent call last):
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask_cors\extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 109, in update_userdata
+    print(data["HERO"])
+KeyError: 'HERO'
+Exception on /update-user [POST]
+Traceback (most recent call last):
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask_cors\extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 109, in update_userdata
+    print(data["HERO"])
+KeyError: 'HERO'
+Exception on /update-user [POST]
+Traceback (most recent call last):
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask_cors\extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\karun\appdata\local\programs\python\python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 109, in update_userdata
+    print(data["HERO"])
+KeyError: 'HERO'
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "app.py", line 118, in update_userdata
+    print(data["HERO"])
+KeyError: 'HERO'
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 121, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+KeyError: 'FINISHED_TIME'
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 121, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+KeyError: 'FINISHED_TIME'
+Exception on request POST /create-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 111, in create_user
+    uid = req['uid']
+TypeError: 'NoneType' object is not subscriptable
+Exception on request POST /create-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 111, in create_user
+    uid = req['uid']
+TypeError: 'NoneType' object is not subscriptable
+Exception on request POST /create-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 111, in create_user
+    uid = req['uid']
+TypeError: 'NoneType' object is not subscriptable
+Exception on request POST /create-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 111, in create_user
+    uid = req['uid']
+TypeError: 'NoneType' object is not subscriptable
+Exception on request POST /create-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\grpc_helpers.py", line 73, in error_remapped_callable
+    return callable_(*args, **kwargs)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\grpc\_channel.py", line 946, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\grpc\_channel.py", line 849, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.INVALID_ARGUMENT
+	details = "Syntax error: Unexpected \")\" [at 21:7]\n      );\n      ^"
+	debug_error_string = "{"created":"@1639474338.063000000","description":"Error received from peer ipv6:[2404:6800:4007:829::200a]:443","file":"src/core/lib/surface/call.cc","file_line":1064,"grpc_message":"Syntax error: Unexpected \")\" [at 21:7]\n      );\n      ^","grpc_status":3}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 112, in create_user
+    database.run_in_transaction(insert_users, uid)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\database.py", line 658, in run_in_transaction
+    return session.run_in_transaction(func, *args, **kw)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\session.py", line 357, in run_in_transaction
+    return_value = func(txn, *args, **kw)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 72, in insert_users
+    row_ct = transaction.execute_update(sql)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\transaction.py", line 299, in execute_update
+    response = api.execute_sql(
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\services\spanner\client.py", line 837, in execute_sql
+    response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\gapic_v1\method.py", line 145, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\retry.py", line 281, in retry_wrapped_func
+    return retry_target(
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\retry.py", line 184, in retry_target
+    return target()
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\timeout.py", line 102, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\grpc_helpers.py", line 75, in error_remapped_callable
+    six.raise_from(exceptions.from_grpc_error(exc), exc)
+  File "<string>", line 3, in raise_from
+google.api_core.exceptions.InvalidArgument: 400 Syntax error: Unexpected \")\" [at 21:7]\n      );\n      ^
+Exception on request POST /create-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\grpc_helpers.py", line 73, in error_remapped_callable
+    return callable_(*args, **kwargs)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\grpc\_channel.py", line 946, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\grpc\_channel.py", line 849, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.INVALID_ARGUMENT
+	details = "Syntax error: Unexpected \")\" [at 21:7]\n      );\n      ^"
+	debug_error_string = "{"created":"@1639474357.158000000","description":"Error received from peer ipv6:[2404:6800:4007:829::200a]:443","file":"src/core/lib/surface/call.cc","file_line":1064,"grpc_message":"Syntax error: Unexpected \")\" [at 21:7]\n      );\n      ^","grpc_status":3}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 113, in create_user
+    database.run_in_transaction(insert_users, uid)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\database.py", line 658, in run_in_transaction
+    return session.run_in_transaction(func, *args, **kw)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\session.py", line 357, in run_in_transaction
+    return_value = func(txn, *args, **kw)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 72, in insert_users
+    row_ct = transaction.execute_update(sql)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\transaction.py", line 299, in execute_update
+    response = api.execute_sql(
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\services\spanner\client.py", line 837, in execute_sql
+    response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\gapic_v1\method.py", line 145, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\retry.py", line 281, in retry_wrapped_func
+    return retry_target(
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\retry.py", line 184, in retry_target
+    return target()
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\timeout.py", line 102, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\grpc_helpers.py", line 75, in error_remapped_callable
+    six.raise_from(exceptions.from_grpc_error(exc), exc)
+  File "<string>", line 3, in raise_from
+google.api_core.exceptions.InvalidArgument: 400 Syntax error: Unexpected \")\" [at 21:7]\n      );\n      ^
+Exception on request POST /create-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\grpc_helpers.py", line 73, in error_remapped_callable
+    return callable_(*args, **kwargs)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\grpc\_channel.py", line 946, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\grpc\_channel.py", line 849, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.INVALID_ARGUMENT
+	details = "Syntax error: Unexpected \")\" [at 21:7]\n      );\n      ^"
+	debug_error_string = "{"created":"@1639474447.774000000","description":"Error received from peer ipv6:[2404:6800:4007:829::200a]:443","file":"src/core/lib/surface/call.cc","file_line":1064,"grpc_message":"Syntax error: Unexpected \")\" [at 21:7]\n      );\n      ^","grpc_status":3}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 113, in create_user
+    database.run_in_transaction(insert_users, uid)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\database.py", line 658, in run_in_transaction
+    return session.run_in_transaction(func, *args, **kw)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\session.py", line 357, in run_in_transaction
+    return_value = func(txn, *args, **kw)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 72, in insert_users
+    row_ct = transaction.execute_update(sql)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\transaction.py", line 299, in execute_update
+    response = api.execute_sql(
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\services\spanner\client.py", line 837, in execute_sql
+    response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\gapic_v1\method.py", line 145, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\retry.py", line 281, in retry_wrapped_func
+    return retry_target(
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\retry.py", line 184, in retry_target
+    return target()
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\timeout.py", line 102, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\api_core\grpc_helpers.py", line 75, in error_remapped_callable
+    six.raise_from(exceptions.from_grpc_error(exc), exc)
+  File "<string>", line 3, in raise_from
+google.api_core.exceptions.InvalidArgument: 400 Syntax error: Unexpected \")\" [at 21:7]\n      );\n      ^
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 125, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+OSError: [Errno 22] Invalid argument
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 129, in update_userdata
+    database.run_in_transaction(update_user_data, data)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\database.py", line 658, in run_in_transaction
+    return session.run_in_transaction(func, *args, **kw)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\session.py", line 357, in run_in_transaction
+    return_value = func(txn, *args, **kw)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 82, in update_user_data
+    return list(transaction.update(
+TypeError: 'NoneType' object is not iterable
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 129, in update_userdata
+    database.run_in_transaction(update_user_data, data)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\database.py", line 658, in run_in_transaction
+    return session.run_in_transaction(func, *args, **kw)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\session.py", line 357, in run_in_transaction
+    return_value = func(txn, *args, **kw)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 82, in update_user_data
+    return list(transaction.update(
+TypeError: 'NoneType' object is not iterable
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 129, in update_userdata
+    database.run_in_transaction(update_user_data, data)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\database.py", line 658, in run_in_transaction
+    return session.run_in_transaction(func, *args, **kw)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\session.py", line 357, in run_in_transaction
+    return_value = func(txn, *args, **kw)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 82, in update_user_data
+    return list(transaction.update(
+TypeError: 'NoneType' object is not iterable
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 129, in update_userdata
+    database.run_in_transaction(update_user_data, data)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\database.py", line 658, in run_in_transaction
+    return session.run_in_transaction(func, *args, **kw)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\session.py", line 357, in run_in_transaction
+    return_value = func(txn, *args, **kw)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 82, in update_user_data
+    return list(transaction.update(
+TypeError: 'NoneType' object is not iterable
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 129, in update_userdata
+    database.run_in_transaction(update_user_data, data)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\database.py", line 658, in run_in_transaction
+    return session.run_in_transaction(func, *args, **kw)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\google\cloud\spanner_v1\session.py", line 357, in run_in_transaction
+    return_value = func(txn, *args, **kw)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 82, in update_user_data
+    return list(transaction.update(
+TypeError: 'NoneType' object is not iterable
+Exception on request POST /update-user
+Traceback (most recent call last):
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1489, in handle_request
+    return await self.full_dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1514, in full_dispatch_request
+    result = await self.handle_user_exception(error)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 964, in handle_user_exception
+    raise error
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1512, in full_dispatch_request
+    result = await self.dispatch_request(request_context)
+  File "C:\Users\karun\AppData\Local\Programs\Python\Python38\lib\site-packages\quart\app.py", line 1557, in dispatch_request
+    return await self.ensure_async(handler)(**request_.view_args)
+  File "C:\Users\karun\Documents\Code\React-Maze\maze\server\app.py", line 126, in update_userdata
+    data["FINISHED_TIME"] = datetime.fromtimestamp(0)
+OSError: [Errno 22] Invalid argument

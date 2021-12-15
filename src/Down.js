@@ -56,7 +56,7 @@ class DownButton extends React.Component {
         )
         .then((response) => {
           console.log(response);
-          var data = response.data;
+          var data = JSON.parse(response.data);
           var visited = data.SOLVED;
           if (visited[parseInt(q)] === true) {
             this.setState({ pos: j });
@@ -89,7 +89,7 @@ class DownButton extends React.Component {
         }
       )
       .then((response) => {
-        data = response.data;
+        data = JSON.parse(response.data);
       });
     var data1 = {
       USER_ID: sessionStorage.getItem("UID"),
@@ -155,7 +155,7 @@ class DownButton extends React.Component {
         }
       )
       .then((response) => {
-        data = response.data;
+        data = JSON.parse(response.data);
         var data1 = {
           USER_ID: sessionStorage.getItem("UID"),
           CLICK: true,
@@ -204,36 +204,36 @@ class DownButton extends React.Component {
       )
       .then((response) => {
         console.log(response);
-        var data = response.data;
+        var data = JSON.parse(response.data);
         var visited = data.SOLVED;
         visited[parseInt(q)] = true;
-        data1 = {
-          USER_ID: sessionStorage.getItem("UID"),
-          CLICK: data.CLICK,
-          FINISHED: data.FINISHED,
-          FINISHED_TIME: data.FINISHED_TIME,
-          HERO: [this.state.pos, this.props.hero[1]],
-          KEY1: data.KEY1,
-          KEY2: data.KEY2,
-          PENALTY: data.PENALTY,
-          SOLVED: visited,
-          VISIBILITY: flattened,
-        };
-        this.props.setData(data1,this.props.setSt);
+        if(this.state.pos===5 && this.props.hero[1]==15)
+          this.props.setData({
+            USER_ID: sessionStorage.getItem("UID"),
+            CLICK: data.CLICK,
+            HERO: [this.state.pos, this.props.hero[1]],
+            KEY1: data.KEY1,
+            KEY2: true,
+            PENALTY: data.PENALTY,
+            SOLVED: visited,
+            VISIBILITY: flattened,
+            FINISHED: data.FINISHED,
+            FINISHED_TIME: data.FINISHED_TIME,
+          },this.props.setSt);
+          else this.props.setData({
+            USER_ID: sessionStorage.getItem("UID"),
+            CLICK: data.CLICK,
+            HERO: [this.state.pos, this.props.hero[1]],
+            KEY1: data.KEY1,
+            KEY2: data.KEY2,
+            PENALTY: data.PENALTY,
+            SOLVED: visited,
+            VISIBILITY: flattened,
+            FINISHED: data.FINISHED,
+            FINISHED_TIME: data.FINISHED_TIME,
+          },this.props.setSt);
       });
-    if(this.state.pos===5 && this.props.hero[1]==15)
-    this.props.setData({
-      USER_ID: sessionStorage.getItem("UID"),
-      CLICK: data1.CLICK,
-      HERO: data1.HERO,
-      KEY1: data1.KEY1,
-      KEY2: true,
-      PENALTY: data1.PENALTY,
-      SOLVED: data1.SOLVED,
-      VISIBILITY: data1.VISIBILITY,
-      FINISHED: data1.FINISHED,
-      FINISHED_TIME: data1.FINISHED_TIME,
-    },this.props.setSt);
+    
   };
 
   handleSkip = () => {
@@ -268,7 +268,7 @@ class DownButton extends React.Component {
         }
       )
       .then((response) => {
-        var data = response.data;
+        var data = JSON.parse(response.data);
         var visited = data.SOLVED;
         var p = data.PENALTY + 20;
         visited[parseInt(q)] = true;
@@ -285,8 +285,7 @@ class DownButton extends React.Component {
           FINISHED_TIME: data.FINISHED_TIME,
         };
         this.props.setData(data1,this.props.setSt);
-      });
-    if(this.state.pos===5 && this.props.hero[1]==15)
+        if(this.state.pos===5 && this.props.hero[1]==15)
     this.props.setData({
       USER_ID: sessionStorage.getItem("UID"),
       CLICK: data1.CLICK,
@@ -299,6 +298,7 @@ class DownButton extends React.Component {
       FINISHED: data1.FINISHED,
       FINISHED_TIME: data1.FINISHED_TIME,
     },this.props.setSt);
+      });
   };
 
   handleDisagree = () => {
@@ -318,7 +318,7 @@ class DownButton extends React.Component {
         }
       )
       .then((response) => {
-        var data = response.data;
+        var data = JSON.parse(response.data);
         var p = data.PENALTY + 1;
         var data1 = {
           USER_ID: sessionStorage.getItem("UID"),

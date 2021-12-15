@@ -25,7 +25,7 @@ async function getUserData() {
       })
     )
     .then((response) => {
-      console.log(response);
+      window.location.reload()
     });
 }
 
@@ -102,19 +102,19 @@ function Maze() {
               }
             )
             .then((response) => {
-              console.log(response.data);
-              var v = response["data"]["VISIBILITY"];
+              var data =  JSON.parse(response.data)
+              var v = data.VISIBILITY;
               var state_arr = [];
               while (v.length) state_arr.push(v.splice(0, 27));
 
               setVis(state_arr);
-              setHero(response["data"]["HERO"]);
+              setHero(data.HERO);
               setLoading(false);
-              setClick(response["data"]["CLICK"]);
-              setFinished(response["data"]["FINISHED"]);
-              setKey1(response["data"]["KEY1"]);
-              setKey2(response["data"]["KEY2"]);
-              setPenalty(response["data"]["PENALTY"]);
+              setClick(data.CLICK);
+              setFinished(data.FINISHED);
+              setKey1(data.KEY1);
+              setKey2(data.KEY2);
+              setPenalty(data.PENALTY);
             });
         }
       });

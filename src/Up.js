@@ -55,7 +55,7 @@ class UpButton extends React.Component {
         )
         .then((response) => {
           console.log(response);
-          var data = response.data;
+          var data = JSON.parse(response.data);
           var visited = data.SOLVED;
           if (visited[parseInt(q)] === true) {
             this.setState({ pos: j });
@@ -87,7 +87,7 @@ class UpButton extends React.Component {
         }
       )
       .then((response) => {
-        data = response.data;
+        data = JSON.parse(response.data);
       });
     var data1 = {
       USER_ID: sessionStorage.getItem("UID"),
@@ -117,7 +117,7 @@ class UpButton extends React.Component {
         }
       )
       .then((response) => {
-        data = response.data;
+        data = JSON.parse(response.data);
       });
     var data1 = {
       USER_ID: sessionStorage.getItem("UID"),
@@ -183,7 +183,7 @@ class UpButton extends React.Component {
         }
       )
       .then((response) => {
-        data = response.data;
+        data = JSON.parse(response.data);
         var data1 = {
           USER_ID: sessionStorage.getItem("UID"),
           CLICK: true,
@@ -232,7 +232,7 @@ class UpButton extends React.Component {
       )
       .then((response) => {
         console.log(response);
-        var data = response.data;
+        var data = JSON.parse(response.data);
         var visited = data.SOLVED;
         visited[parseInt(q)] = true;
         data1 = {
@@ -284,7 +284,7 @@ class UpButton extends React.Component {
         }
       )
       .then((response) => {
-        var data = response.data;
+        var data = JSON.parse(response.data);
         var visited = data.SOLVED;
         var p = data.PENALTY + 20;
         visited[parseInt(q)] = true;
@@ -321,7 +321,7 @@ class UpButton extends React.Component {
         }
       )
       .then((response) => {
-        var data = response.data;
+        var data = JSON.parse(response.data);
         var p = data.PENALTY + 1;
         var data1 = {
           USER_ID: sessionStorage.getItem("UID"),
