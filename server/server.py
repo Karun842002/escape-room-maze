@@ -62,8 +62,6 @@ def insert_users(transaction, uid):
 
 
 def update_user_data(transaction, data):
-    if 'SOURCE' in data.keys():
-        print(data["SOURCE"])
     row_ct = transaction.execute_update(
         "UPDATE USERS "
         "SET CLICK=@CLICK, FINISHED=@FINISHED, FINISHED_TIME=@FINISHED_TIME, HERO=@HERO, KEY1=@KEY1, KEY2=@KEY2, PENALTY=@PENALTY, SOLVED=@SOLVED,VISIBILITY=@VISIBILITY "
@@ -96,7 +94,6 @@ async def create_user(request):
     req = await request.text()
     data = json.loads(req)
     uid = data['uid']
-    print(data['uid'])
     database.run_in_transaction(insert_users, uid)
     return js("Done", 200)
 

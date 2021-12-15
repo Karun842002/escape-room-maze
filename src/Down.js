@@ -101,6 +101,7 @@ class DownButton extends React.Component {
                         PENALTY: data.PENALTY,
                         SOLVED: data.SOLVED,
                         VISIBILITY: data.VISIBILITY,
+                        SOURCE: 'handle_click_open'
                     };
                     this.props.setData(data1, this.props.setSt);
                 });
@@ -167,6 +168,7 @@ class DownButton extends React.Component {
                     PENALTY: data.PENALTY,
                     SOLVED: data.SOLVED,
                     VISIBILITY: data.VISIBILITY,
+                    SOURCE:'handle_close'
                 };
                 this.props.setData(data1, this.props.setSt);
             });
@@ -220,6 +222,7 @@ class DownButton extends React.Component {
                             VISIBILITY: flattened,
                             FINISHED: data.FINISHED,
                             FINISHED_TIME: data.FINISHED_TIME,
+                            SOURCE: 'handle_agree'
                         },
                         this.props.setSt
                     );
@@ -236,6 +239,7 @@ class DownButton extends React.Component {
                             VISIBILITY: flattened,
                             FINISHED: data.FINISHED,
                             FINISHED_TIME: data.FINISHED_TIME,
+                            SOURCE: 'handle_agree'
                         },
                         this.props.setSt
                     );
@@ -278,32 +282,37 @@ class DownButton extends React.Component {
                 var visited = data.SOLVED;
                 var p = data.PENALTY + 20;
                 visited[parseInt(q)] = true;
-                data1 = {
-                    USER_ID: sessionStorage.getItem("UID"),
-                    CLICK: data.CLICK,
-                    KEY1: data.KEY1,
-                    KEY2: data.KEY2,
-                    VISIBILITY: flattened,
-                    HERO: [this.state.pos, this.props.hero[1]],
-                    SOLVED: visited,
-                    PENALTY: p,
-                    FINISHED: data.FINISHED,
-                    FINISHED_TIME: data.FINISHED_TIME,
-                };
-                this.props.setData(data1, this.props.setSt);
                 if (this.state.pos === 5 && this.props.hero[1] == 15)
                     this.props.setData(
                         {
                             USER_ID: sessionStorage.getItem("UID"),
-                            CLICK: data1.CLICK,
-                            HERO: data1.HERO,
-                            KEY1: data1.KEY1,
+                            CLICK: data.CLICK,
+                            HERO: [this.state.pos, this.props.hero[1]],
+                            KEY1: data.KEY1,
                             KEY2: true,
-                            PENALTY: data1.PENALTY,
-                            SOLVED: data1.SOLVED,
-                            VISIBILITY: data1.VISIBILITY,
-                            FINISHED: data1.FINISHED,
-                            FINISHED_TIME: data1.FINISHED_TIME,
+                            PENALTY: p,
+                            SOLVED: visited,
+                            VISIBILITY: flattened,
+                            FINISHED: data.FINISHED,
+                            FINISHED_TIME: data.FINISHED_TIME,
+                            SOURCE: 'handle_skip'
+                        },
+                        this.props.setSt
+                    );
+                else
+                    this.props.setData(
+                        {
+                            USER_ID: sessionStorage.getItem("UID"),
+                            CLICK: data.CLICK,
+                            HERO: [this.state.pos, this.props.hero[1]],
+                            KEY1: data.KEY1,
+                            KEY2: data.KEY2,
+                            PENALTY: p,
+                            SOLVED: visited,
+                            VISIBILITY: flattened,
+                            FINISHED: data.FINISHED,
+                            FINISHED_TIME: data.FINISHED_TIME,
+                            SOURCE: 'handle_skip'
                         },
                         this.props.setSt
                     );
@@ -340,6 +349,7 @@ class DownButton extends React.Component {
                     PENALTY: p,
                     FINISHED: data.FINISHED,
                     FINISHED_TIME: data.FINISHED_TIME,
+                    SOURCE: 'handle_disagree'
                 };
                 this.props.setData(data1, this.props.setSt);
             });
