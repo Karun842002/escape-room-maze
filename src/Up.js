@@ -88,50 +88,21 @@ class UpButton extends React.Component {
       )
       .then((response) => {
         data = JSON.parse(response.data);
+        var data1 = {
+          USER_ID: sessionStorage.getItem("UID"),
+          CLICK: true,
+          FINISHED: data.FINISHED,
+          FINISHED_TIME: data.FINISHED_TIME,
+          HERO: data.HERO,
+          KEY1: data.KEY1,
+          KEY2: data.KEY2,
+          PENALTY: data.PENALTY,
+          SOLVED: data.SOLVED,
+          VISIBILITY: data.VISIBILITY,
+        };
+        this.props.setData(data1,this.props.setSt);
       });
-    var data1 = {
-      USER_ID: sessionStorage.getItem("UID"),
-      CLICK: true,
-      FINISHED: data.FINISHED,
-      FINISHED_TIME: data.FINISHED_TIME,
-      HERO: data.HERO,
-      KEY1: data.KEY1,
-      KEY2: data.KEY2,
-      PENALTY: data.PENALTY,
-      SOLVED: data.SOLVED,
-      VISIBILITY: data.VISIBILITY,
-    };
-    this.props.setData(data1,this.props.setSt);
-      var data = {};
-    var user = sessionStorage.getItem("UID")
-    axios
-      .post(
-        "http://localhost:5000/get-user-data",
-        JSON.stringify({
-          uid: user,
-        }),
-        {
-          headers: {
-            "Content-Type": "text/plain",
-          },
-        }
-      )
-      .then((response) => {
-        data = JSON.parse(response.data);
-      });
-    var data1 = {
-      USER_ID: sessionStorage.getItem("UID"),
-      CLICK: true,
-      FINISHED: data.FINISHED,
-      FINISHED_TIME: data.FINISHED_TIME,
-      HERO: data.HERO,
-      KEY1: data.KEY1,
-      KEY2: data.KEY2,
-      PENALTY: data.PENALTY,
-      SOLVED: data.SOLVED,
-      VISIBILITY: data.VISIBILITY,
-    };
-    this.props.setData(data1,this.props.setSt);
+    
       var hero = this.props.hero;
       for (var j = hero[0]; j >= 0; j--) {
         if (
@@ -290,7 +261,7 @@ class UpButton extends React.Component {
         visited[parseInt(q)] = true;
         data1 = {
           USER_ID: sessionStorage.getItem("UID"),
-          CLICK: data.click,
+          CLICK: data.CLICK,
           KEY1: data.KEY1,
           KEY2: data.KEY2,
           VISIBILITY: flattened,
@@ -325,7 +296,7 @@ class UpButton extends React.Component {
         var p = data.PENALTY + 1;
         var data1 = {
           USER_ID: sessionStorage.getItem("UID"),
-          CLICK: data.click,
+          CLICK: data.CLICK,
           KEY1: data.KEY1,
           KEY2: data.KEY2,
           VISIBILITY: data.VISIBILITY,

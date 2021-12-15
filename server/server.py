@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 from google.api_core.exceptions import GoogleAPICallError
 import json
 
+from google.cloud.spanner_v1.param_types import Array
+
 load_dotenv()
 spanner_client = spanner.Client()
 instance = spanner_client.instance('react-instance')
@@ -18,13 +20,19 @@ app.use_cors(
     allow_headers="* Authorization",
     max_age=300,
 )
+
+
 @app.route("/")
 async def hello_world():
     return "<p>Hello, World!</p>"
 
 
 def insert_users(transaction, uid):
-    return list(transaction.insert(
+    v = [False]*729
+    for i in range(3):
+        for j in range(3):
+            v[27*i+j] = True
+    row_ct = transaction.insert(
         table="USERS",
         columns=(
             "USER_ID",
@@ -42,60 +50,51 @@ def insert_users(transaction, uid):
             True,
             False,
             datetime.fromtimestamp(0),
-            [1,0],
+            [1, 0],
             False,
             False,
             0,
-            [True]*115,
-            [True]*729
+            [False]*49+[True]*66,
+            v
         )]
-    ))
-    #print("{} record(s) inserted.".format(row_ct))
+    )
+    print("{} record(s) inserted.".format(row_ct))
 
 
 def update_user_data(transaction, data):
-    transaction.execute_update(
-            "UPDATE USERS"
-            "SET CLICK=@CLICK, FINISHED=@FINISHED, FINISHED_TIME=@FINSIHED_TIME, HERO=@HERO, KEY1=@KEY1, KEY2=@KEY2, PENALTY=@PENALTY, SOLVED=@SOLVED,VISIBILITY=@VISIBILITY"
-            "WHERE USER_ID='aSs9Ko79rQM2Ke9uaWWu48CDrOm1'",
-            params={"AlbumBudget": first_album_budget},
-            param_types={"AlbumBudget": spanner.param_types.INT64},
-        )
+    if 'SOURCE' in data.keys():
+        print(data["SOURCE"])
+    row_ct = transaction.execute_update(
+        "UPDATE USERS "
+        "SET CLICK=@CLICK, FINISHED=@FINISHED, FINISHED_TIME=@FINISHED_TIME, HERO=@HERO, KEY1=@KEY1, KEY2=@KEY2, PENALTY=@PENALTY, SOLVED=@SOLVED,VISIBILITY=@VISIBILITY "
+        "WHERE USER_ID=@UID ",
+        params={"UID": data["USER_ID"],
+                "CLICK": data["CLICK"],
+                "FINISHED": data["FINISHED"],
+                "FINISHED_TIME": data["FINISHED_TIME"], 'HERO': data["HERO"], "KEY1": data["KEY1"], "KEY2": data["KEY2"], "PENALTY": data["PENALTY"],
+                "SOLVED": data["SOLVED"], "VISIBILITY": data["VISIBILITY"]
+                },
+        param_types={"UID": spanner.param_types.STRING,
+                     "CLICK": spanner.param_types.BOOL,
+                     "FINISHED": spanner.param_types.BOOL,
+                     "FINISHED_TIME": spanner.param_types.TIMESTAMP,
+                     'HERO': spanner.param_types.Array(spanner.param_types.INT64),
+                     "KEY1": spanner.param_types.BOOL,
+                     "KEY2": spanner.param_types.BOOL,
+                     "PENALTY": spanner.param_types.INT64,
+                     "SOLVED": spanner.param_types.Array(spanner.param_types.BOOL),
+                     "VISIBILITY": spanner.param_types.Array(spanner.param_types.BOOL)
+                     },
+    )
 
-    return list(transaction.update(
-        table="USERS",
-        columns=(
-            "USER_ID",
-            "CLICK",
-            "FINISHED",
-            "FINISHED_TIME",
-            "HERO",
-            "KEY1",
-            'KEY2',
-            'PENALTY',
-            'SOLVED',
-            'VISIBILITY'),
-        values=[(
-            data['USER_ID'],
-            data['CLICK'],
-            data['FINISHED'],
-            data['FINISHED_TIME'],
-            data['HERO'],
-            data['KEY1'],
-            data['KEY2'],
-            data['PENALTY'],
-            data['SOLVED'],
-            data['VISIBILITY']
-        )]
-    ))
     # transaction.commit()
-    #print("{} record(s) inserted.".format(row_ct))
+    print("{} record(s) inserted.".format(row_ct))
 
 
 @app.route('/create-user', methods=['POST'])
 async def create_user(request):
     req = await request.text()
-    data = json.loads(req) 
+    data = json.loads(req)
     uid = data['uid']
     print(data['uid'])
     database.run_in_transaction(insert_users, uid)
@@ -106,12 +105,13 @@ async def create_user(request):
 async def update_userdata(request):
     data = await request.text()
     data = json.loads(data)
-    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"])
+    data["FINISHED_TIME"] = datetime.fromtimestamp(data["FINISHED_TIME"]//1000)
     try:
         database.run_in_transaction(update_user_data, data)
     except GoogleAPICallError as ex:
         print(ex)
     return js("Done", 200)
+#  uvicorn server:app --port 5000 --reload
 
 
 @app.route('/get-user', methods=['POST'])
