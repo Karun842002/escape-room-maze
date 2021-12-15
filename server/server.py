@@ -6,8 +6,6 @@ from dotenv import load_dotenv
 from google.api_core.exceptions import GoogleAPICallError
 import json
 
-from google.cloud.spanner_v1.param_types import Array
-
 load_dotenv()
 spanner_client = spanner.Client()
 instance = spanner_client.instance('react-instance')
