@@ -1,6 +1,7 @@
 from datetime import datetime
 from blacksheep.server import Application
 from blacksheep.server.responses import json as js
+from blacksheep.server.responses import html
 from google.cloud import spanner
 from dotenv import load_dotenv
 from google.api_core.exceptions import GoogleAPICallError
@@ -19,10 +20,7 @@ app.use_cors(
     max_age=300,
 )
 
-
-@app.route("/")
-async def hello_world():
-    return "<p>Hello, World!</p>"
+app.serve_files("build",fallback_document="index.html",)
 
 
 def insert_users(transaction, uid):

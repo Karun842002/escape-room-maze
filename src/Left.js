@@ -50,7 +50,7 @@ class LeftButton extends React.Component {
             const user = sessionStorage.getItem("UID");
             axios
                 .post(
-                    "http://localhost:5000/get-user-data",
+                    "http://35.200.246.206/get-user-data",
                     JSON.stringify({
                         uid: user,
                     }),
@@ -84,7 +84,7 @@ class LeftButton extends React.Component {
             var user = sessionStorage.getItem("UID");
             axios
                 .post(
-                    "http://localhost:5000/get-user-data",
+                    "http://35.200.246.206/get-user-data",
                     JSON.stringify({
                         uid: user,
                     }),
@@ -154,7 +154,7 @@ class LeftButton extends React.Component {
         var user = sessionStorage.getItem("UID");
         axios
             .post(
-                "http://localhost:5000/get-user-data",
+                "http://35.200.246.206/get-user-data",
                 JSON.stringify({
                     uid: user,
                 }),
@@ -205,7 +205,7 @@ class LeftButton extends React.Component {
         var data1 = {};
         axios
             .post(
-                "http://localhost:5000/get-user-data",
+                "http://35.200.246.206/get-user-data",
                 JSON.stringify({
                     uid: user,
                 }),
@@ -258,7 +258,7 @@ class LeftButton extends React.Component {
         var data1 = {};
         axios
             .post(
-                "http://localhost:5000/get-user-data",
+                "http://35.200.246.206/get-user-data",
                 JSON.stringify({
                     uid: user,
                 }),
@@ -296,7 +296,7 @@ class LeftButton extends React.Component {
         const user = sessionStorage.getItem("UID");
         axios
             .post(
-                "http://localhost:5000/get-user-data",
+                "http://35.200.246.206/get-user-data",
                 JSON.stringify({
                     uid: user,
                 }),

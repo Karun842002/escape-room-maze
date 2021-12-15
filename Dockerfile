@@ -1,14 +1,9 @@
-# pull the official base image
-FROM node:16.13-alpine3.12
-# set working direction
+FROM python:3.9
 WORKDIR /app
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-# install application dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm i
-# add app
-COPY . ./
-# start app
-CMD ["npm", "start"]
+
+COPY server/requirements.txt server/server.py server/.env server/keys.json ./
+COPY server/build ./build
+RUN pip install -r ./requirements.txt
+ENV GOOGLE_APPLICATION_CREDENTIALS keys.json
+
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "5000"]
