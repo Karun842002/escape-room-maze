@@ -20,8 +20,9 @@ app.use_cors(
     max_age=300,
 )
 
-app.serve_files("build",fallback_document="index.html",)
-
+@app.route('/')
+async def hello():
+    return "Hello"
 
 def insert_users(transaction, uid):
     v = [False]*729

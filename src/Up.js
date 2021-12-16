@@ -43,7 +43,7 @@ class UpButton extends React.Component {
       const user = sessionStorage.getItem("UID");
       axios
         .post(
-          "http://35.200.246.206/get-user-data",
+          "http://35.200.157.115/get-user-data",
           JSON.stringify({
             uid: user,
           }),
@@ -76,7 +76,7 @@ class UpButton extends React.Component {
     var user = sessionStorage.getItem("UID")
     axios
       .post(
-        "http://35.200.246.206/get-user-data",
+        "http://35.200.157.115/get-user-data",
         JSON.stringify({
           uid: user,
         }),
@@ -143,7 +143,7 @@ class UpButton extends React.Component {
     var data = {};
     axios
       .post(
-        "http://35.200.246.206/get-user-data",
+        "http://35.200.157.115/get-user-data",
         JSON.stringify({
           uid: user,
         }),
@@ -191,7 +191,7 @@ class UpButton extends React.Component {
     var data1 = {};
     axios
       .post(
-        "http://35.200.246.206/get-user-data",
+        "http://35.200.157.115/get-user-data",
         JSON.stringify({
           uid: user,
         }),
@@ -244,7 +244,7 @@ class UpButton extends React.Component {
     var data1 = {};
     axios
       .post(
-        "http://35.200.246.206/get-user-data",
+        "http://35.200.157.115/get-user-data",
         JSON.stringify({
           uid: user,
         }),
@@ -281,7 +281,7 @@ class UpButton extends React.Component {
     const user = sessionStorage.getItem("UID");
     axios
       .post(
-        "http://35.200.246.206/get-user-data",
+        "http://35.200.157.115/get-user-data",
         JSON.stringify({
           uid: user,
         }),

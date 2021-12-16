@@ -2,7 +2,6 @@ FROM python:3.9
 WORKDIR /app
 
 COPY server/requirements.txt server/server.py server/.env server/keys.json ./
-COPY server/build ./build
 RUN pip install -r ./requirements.txt
 ENV GOOGLE_APPLICATION_CREDENTIALS keys.json
 

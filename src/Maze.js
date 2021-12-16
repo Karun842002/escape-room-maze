@@ -20,7 +20,7 @@ import Particle from "./Particle";
 async function getUserData() {
     axios
         .post(
-            "http://35.200.246.206/create-user",
+            "http://35.200.157.115/create-user",
             JSON.stringify({
                 uid: sessionStorage.getItem("UID"),
             })
@@ -31,7 +31,7 @@ async function getUserData() {
 }
 
 function setData(data, setSt) {
-    axios.post("http://35.200.246.206/update-user", JSON.stringify(data), {
+    axios.post("http://35.200.157.115/update-user", JSON.stringify(data), {
         headers: {
             "Content-Type": "text/plain",
         },
@@ -78,7 +78,7 @@ function Maze() {
         console.log(sessionStorage.getItem("UID"));
         axios
             .post(
-                "http://35.200.246.206/get-user",
+                "http://35.200.157.115/get-user",
                 JSON.stringify({ uid: sessionStorage.getItem("UID") }),
                 {
                     headers: {
@@ -92,7 +92,7 @@ function Maze() {
                 } else {
                     axios
                         .post(
-                            "http://35.200.246.206/get-user-data",
+                            "http://35.200.157.115/get-user-data",
                             JSON.stringify({
                                 uid: sessionStorage.getItem("UID"),
                             }),
