@@ -44,7 +44,7 @@ class DownButton extends React.Component {
             const user = sessionStorage.getItem("UID");
             axios
                 .post(
-                    "http://35.200.157.115/get-user-data",
+                    "/api/get-user-data",
                     JSON.stringify({
                         uid: user,
                     }),
@@ -78,7 +78,7 @@ class DownButton extends React.Component {
             var user = sessionStorage.getItem("UID");
             axios
                 .post(
-                    "http://35.200.157.115/get-user-data",
+                    "/api/get-user-data",
                     JSON.stringify({
                         uid: user,
                     }),
@@ -145,7 +145,7 @@ class DownButton extends React.Component {
         var user = sessionStorage.getItem("UID");
         axios
             .post(
-                "http://35.200.157.115/get-user-data",
+                "/api/get-user-data",
                 JSON.stringify({
                     uid: user,
                 }),
@@ -194,7 +194,7 @@ class DownButton extends React.Component {
         var data1 = {};
         axios
             .post(
-                "http://35.200.157.115/get-user-data",
+                "/api/get-user-data",
                 JSON.stringify({
                     uid: user,
                 }),
@@ -267,7 +267,7 @@ class DownButton extends React.Component {
         var data1 = {};
         axios
             .post(
-                "http://35.200.157.115/get-user-data",
+                "/api/get-user-data",
                 JSON.stringify({
                     uid: user,
                 }),
@@ -325,7 +325,7 @@ class DownButton extends React.Component {
         const user = sessionStorage.getItem("UID");
         axios
             .post(
-                "http://35.200.157.115/get-user-data",
+                "/api/get-user-data",
                 JSON.stringify({
                     uid: user,
                 }),
