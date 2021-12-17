@@ -24,7 +24,7 @@ class DownButton extends React.Component {
     };
 
     handleClick = () => {
-        if (true) {
+        if(this.props.click) {
             var hero = this.props.hero;
             for (var j = hero[0]; j < 27; j++) {
                 if (
@@ -65,13 +65,11 @@ class DownButton extends React.Component {
                         this.handleClickOpen();
                     }
                 });
-        } else {
-            alert("A Team Member has a question open!");
-        }
+        } 
     };
 
     handleClickOpen = () => {
-        if (true) {
+        if(this.props.click) {
             this.setState({ open: true });
             this.props.setClick(false);
             var data = {};
@@ -213,7 +211,7 @@ class DownButton extends React.Component {
                     this.props.setData(
                         {
                             USER_ID: sessionStorage.getItem("UID"),
-                            CLICK: data.CLICK,
+                            CLICK: true,
                             HERO: [this.state.pos, this.props.hero[1]],
                             KEY1: data.KEY1,
                             KEY2: true,
@@ -230,7 +228,7 @@ class DownButton extends React.Component {
                     this.props.setData(
                         {
                             USER_ID: sessionStorage.getItem("UID"),
-                            CLICK: data.CLICK,
+                            CLICK: true,
                             HERO: [this.state.pos, this.props.hero[1]],
                             KEY1: data.KEY1,
                             KEY2: data.KEY2,
@@ -286,7 +284,7 @@ class DownButton extends React.Component {
                     this.props.setData(
                         {
                             USER_ID: sessionStorage.getItem("UID"),
-                            CLICK: data.CLICK,
+                            CLICK: true,
                             HERO: [this.state.pos, this.props.hero[1]],
                             KEY1: data.KEY1,
                             KEY2: true,
@@ -303,7 +301,7 @@ class DownButton extends React.Component {
                     this.props.setData(
                         {
                             USER_ID: sessionStorage.getItem("UID"),
-                            CLICK: data.CLICK,
+                            CLICK: true,
                             HERO: [this.state.pos, this.props.hero[1]],
                             KEY1: data.KEY1,
                             KEY2: data.KEY2,
@@ -340,7 +338,7 @@ class DownButton extends React.Component {
                 var p = data.PENALTY + 1;
                 var data1 = {
                     USER_ID: sessionStorage.getItem("UID"),
-                    CLICK: data.CLICK,
+                    CLICK: true,
                     KEY1: data.KEY1,
                     KEY2: data.KEY2,
                     VISIBILITY: data.VISIBILITY,

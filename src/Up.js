@@ -24,7 +24,7 @@ class UpButton extends React.Component {
   };
 
   handleClick = () => {
-    if (true) {
+    if(this.props.click) {
       var hero = this.props.hero;
       for (var j = hero[0]; j >= 0; j--) {
         if (
@@ -64,13 +64,11 @@ class UpButton extends React.Component {
             this.handleClickOpen();
           }
         });
-    } else {
-      alert("A Team Member has a question open!");
-    }
+    } 
   };
 
   handleClickOpen = () => {
-    if (true) {
+    if(this.props.click) {
       this.setState({ open: true });
       var data = {};
     var user = sessionStorage.getItem("UID")
@@ -208,7 +206,7 @@ class UpButton extends React.Component {
         visited[parseInt(q)] = true;
         data1 = {
           USER_ID: sessionStorage.getItem("UID"),
-          CLICK: data.CLICK,
+          CLICK: true,
           FINISHED: data.FINISHED,
           FINISHED_TIME: data.FINISHED_TIME,
           HERO: [this.state.pos, this.props.hero[1]],
@@ -261,7 +259,7 @@ class UpButton extends React.Component {
         visited[parseInt(q)] = true;
         data1 = {
           USER_ID: sessionStorage.getItem("UID"),
-          CLICK: data.CLICK,
+          CLICK: true,
           KEY1: data.KEY1,
           KEY2: data.KEY2,
           VISIBILITY: flattened,
@@ -296,7 +294,7 @@ class UpButton extends React.Component {
         var p = data.PENALTY + 1;
         var data1 = {
           USER_ID: sessionStorage.getItem("UID"),
-          CLICK: data.CLICK,
+          CLICK: true,
           KEY1: data.KEY1,
           KEY2: data.KEY2,
           VISIBILITY: data.VISIBILITY,

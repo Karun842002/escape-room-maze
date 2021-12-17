@@ -10,17 +10,7 @@ import Particle from "./Particle";
 function App() {
     const navigate = useNavigate();
     useEffect(() => {
-        if (
-            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-                navigator.userAgent
-            )
-        ) {
-            // true for mobile device
-            navigate("/error404");
-        } else {
-            // false for not mobile device
-            navigate("/");
-        }
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {navigate("/error404");} else {navigate("/");}
     }, []);
 
     useEffect(() => {
