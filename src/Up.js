@@ -20,51 +20,9 @@ class UpButton extends React.Component {
     option2: "",
     option3: "",
     option4: "",
+    option5: "",
     correct: "",
-  };
-
-  handleClick = () => {
-    if(this.props.click) {
-      var hero = this.props.hero;
-      for (var j = hero[0]; j >= 0; j--) {
-        if (
-          maze[j - 1][hero[1]].wall === true ||
-          ((maze[j][hero[1]].options.includes("U") ||
-            maze[j][hero[1]].options.includes("D")) &&
-            (maze[j][hero[1]].options.includes("L") ||
-              maze[j][hero[1]].options.includes("R")) &&
-            j !== hero[0])
-        ) {
-          break;
-        }
-      }
-      var key = String(j) + "-" + String(hero[1]);
-      var q = queMap.get(key);
-      const user = sessionStorage.getItem("UID");
-      axios
-        .post(
-          "/api/get-user-data",
-          JSON.stringify({
-            uid: user,
-          }),
-          {
-            headers: {
-              "Content-Type": "text/plain",
-            },
-          }
-        )
-        .then((response) => {
-          //console.log(response);
-          var data = JSON.parse(response.data);
-          var visited = data.SOLVED;
-          if (visited[parseInt(q)] === true) {
-            this.setState({ pos: j });
-            this.handleAgree();
-          } else {
-            this.handleClickOpen();
-          }
-        });
-    } 
+    solved : false
   };
 
   handleClickOpen = () => {
@@ -116,13 +74,35 @@ class UpButton extends React.Component {
       }
 
       this.setState({ pos: j });
-      var key = String(j) + "-" + String(hero[1]);
-      var q = queMap.get(key);
-      const db = getFirestore();
-      onSnapshot(doc(db, "questions", q), (doc) => {
-        var dat = doc.data();
-        this.setState(dat);
-      });
+      axios
+        .post(
+          "/api/get-user-data",
+          JSON.stringify({
+            uid: user,
+          }),
+          {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+        )
+        .then((response) => {
+          var data = JSON.parse(response.data);
+          var key = String(hero[0]) + "-" + String(j);
+          var q = queMap.get(key);
+          if (data.SOLVED[parseInt(q)]) {
+            this.setState({
+              solved: true,
+            });
+          } else {
+            const db = getFirestore();
+            getDoc(doc(db, "questions", q)).then((doc) => {
+              var dat = doc.data();
+              this.setState(dat);
+              this.setState({ option5:"SKIP", solved: false });
+            });
+          }
+        });
     }
   };
 
@@ -134,39 +114,10 @@ class UpButton extends React.Component {
       option2: "",
       option3: "",
       option4: "",
+      option5: "",
       correct: "",
+      solved : false
     });
-    this.props.setClick(true);
-    const user = sessionStorage.getItem("UID");
-    var data = {};
-    axios
-      .post(
-        "/api/get-user-data",
-        JSON.stringify({
-          uid: user,
-        }),
-        {
-          headers: {
-            "Content-Type": "text/plain",
-          },
-        }
-      )
-      .then((response) => {
-        data = JSON.parse(response.data);
-        var data1 = {
-          USER_ID: sessionStorage.getItem("UID"),
-          CLICK: true,
-          FINISHED: data.FINISHED,
-          FINISHED_TIME: data.FINISHED_TIME,
-          HERO: data.HERO,
-          KEY1: data.KEY1,
-          KEY2: data.KEY2,
-          PENALTY: data.PENALTY,
-          SOLVED: data.SOLVED,
-          VISIBILITY: data.VISIBILITY,
-        };
-        this.props.setData(data1,this.props.setSt);
-      });
   };
 
   handleAgree = () => {
@@ -308,10 +259,48 @@ class UpButton extends React.Component {
       });
   };
   render() {
+    if (this.state.solved) {
+      return (
+        <div>
+          {/* Button to trigger the opening of the dialog */}
+          <a href="#" className="up" onClick={this.handleClickOpen}>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          UP
+        </a>
+          {/* Dialog that is displayed if the state open is true */}
+          <Dialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"Successful Alert"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are you sure you want to move DOWN?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                Disagree
+              </Button>
+              <Button onClick={this.handleAgree} color="primary">
+                Agree
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      );
+    } else {
     return (
       <div>
         {/* Button to trigger the opening of the dialog */}
-        <a href="#" className="up" onClick={this.handleClick}>
+        <a href="#" className="up" onClick={this.handleClickOpen}>
           <span></span>
           <span></span>
           <span></span>
@@ -387,12 +376,12 @@ class UpButton extends React.Component {
               {this.state.option4}
             </Button>
             <Button onClick={this.handleSkip} color="primary">
-              Skip
+              {this.state.option5}
             </Button>
           </DialogActions>
         </Dialog>
       </div>
-    );
+    );}
   }
 }
 
