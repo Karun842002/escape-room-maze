@@ -54,7 +54,7 @@ class UpButton extends React.Component {
           }
         )
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           var data = JSON.parse(response.data);
           var visited = data.SOLVED;
           if (visited[parseInt(q)] === true) {
@@ -200,7 +200,7 @@ class UpButton extends React.Component {
         }
       )
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         var data = JSON.parse(response.data);
         var visited = data.SOLVED;
         visited[parseInt(q)] = true;
@@ -238,7 +238,7 @@ class UpButton extends React.Component {
     var q = queMap.get(key);
     const db = getFirestore();
     const user = sessionStorage.getItem("UID");
-    console.log(pos);
+    //console.log(pos);
     var data1 = {};
     axios
       .post(

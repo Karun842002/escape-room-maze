@@ -27,7 +27,7 @@ class LeftButton extends React.Component {
     };
 
     handleClick = () => {
-        console.log(this.props.click)
+        //console.log(this.props.click)
         if(this.props.click) {
             var hero = this.props.hero;
             for (var j = hero[1]; j >= 0; j--) {
@@ -62,7 +62,7 @@ class LeftButton extends React.Component {
                     }
                 )
                 .then((response) => {
-                    console.log(response);
+                    //console.log(response);
                     var data = JSON.parse(response.data);
                     var visited = data.SOLVED;
                     if (visited[parseInt(q)] === true) {
@@ -129,7 +129,7 @@ class LeftButton extends React.Component {
             this.setState({ pos: j });
             var key = String(hero[0]) + "-" + String(j);
             var q = queMap.get(key);
-            console.log(key);
+            //console.log(key);
             const db = getFirestore();
             getDoc(doc(db, "questions", q)).then((doc) => {
                 var dat = doc.data();
@@ -200,7 +200,7 @@ class LeftButton extends React.Component {
         var q = queMap.get(key);
         const db = getFirestore();
         const user = sessionStorage.getItem("UID");
-        console.log(pos);
+        //console.log(pos);
         var data1 = {};
         axios
             .post(
@@ -215,7 +215,7 @@ class LeftButton extends React.Component {
                 }
             )
             .then((response) => {
-                console.log(response);
+                //console.log(response);
                 var data = JSON.parse(response.data);
                 var visited = data.SOLVED;
                 visited[parseInt(q)] = true;

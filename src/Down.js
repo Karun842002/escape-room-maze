@@ -55,7 +55,7 @@ class DownButton extends React.Component {
                     }
                 )
                 .then((response) => {
-                    console.log(response);
+                    //console.log(response);
                     var data = JSON.parse(response.data);
                     var visited = data.SOLVED;
                     if (visited[parseInt(q)] === true) {
@@ -203,7 +203,7 @@ class DownButton extends React.Component {
                 }
             )
             .then((response) => {
-                console.log(response);
+                //console.log(response);
                 var data = JSON.parse(response.data);
                 var visited = data.SOLVED;
                 visited[parseInt(q)] = true;

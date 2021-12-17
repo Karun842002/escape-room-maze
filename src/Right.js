@@ -27,7 +27,7 @@ class RightButton extends React.Component {
     };
 
     componentDidMount = () => {
-        console.log("hello");
+        //console.log("hello");
     };
 
     handleClick = () => {
@@ -64,7 +64,7 @@ class RightButton extends React.Component {
                     }
                 )
                 .then((response) => {
-                    console.log(response);
+                    //console.log(response);
                     var data = JSON.parse(response.data);
                     var visited = data.SOLVED;
                     if (visited[parseInt(q)] === true) {
@@ -185,7 +185,7 @@ class RightButton extends React.Component {
                 }
             )
             .then((response) => {
-                console.log(response);
+                //console.log(response);
                 var data = JSON.parse(response.data);
                 var visited = data.SOLVED;
                 visited[parseInt(q)] = true;

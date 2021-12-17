@@ -42,14 +42,16 @@ function setData(data, setSt) {
 
       setSt.setVis(state_arr);
       setSt.setHero(data.HERO);
-      setSt.setLoading(false);
-      setSt.setClick(true);
       setSt.setFinished(data.FINISHED);
       setSt.setKey1(data.KEY1);
       setSt.setKey2(data.KEY2);
       setSt.setPenalty(data.PENALTY);
       setSt.setFinishedTime(data.FINISHED_TIME)
       setSt.setSolved(data.SOLVED)
+      setTimeout(()=>{
+        setSt.setLoading(false);
+        setSt.setClick(true);
+      },2000)
     });
 }
 
@@ -83,7 +85,7 @@ function Maze() {
   useEffect(() => {
     var body = document.getElementsByTagName("body");
     body.id = "mazebody";
-    console.log(sessionStorage.getItem("UID"));
+    //console.log(sessionStorage.getItem("UID"));
     axios
       .post(
         "/api/get-user",
@@ -111,6 +113,7 @@ function Maze() {
               }
             )
             .then((response) => {
+              //console.log(JSON.parse(response.data))
               var data = JSON.parse(response.data);
               var v = data.VISIBILITY;
               var state_arr = [];
