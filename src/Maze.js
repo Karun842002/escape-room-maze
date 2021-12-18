@@ -11,7 +11,6 @@ import { maze } from "./walls";
 import axios from "axios";
 
 import "./maze.css";
-import Particle from "./Particle";
 
 async function getUserData() {
   axios
@@ -136,7 +135,6 @@ function Maze() {
   if (loading && firstBoot) {
     return (
       <div>
-        <Particle />
         <div id="center">
               <Loader
                 type="spinner-cub"

@@ -30,7 +30,6 @@ class RightButton extends React.Component {
   handleClickOpen = () => {
     if (this.props.click) {
       this.setState({ open: true });
-      this.props.setClick(false);
       var data = {};
       var user = sessionStorage.getItem("UID");
 

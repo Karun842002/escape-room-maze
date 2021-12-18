@@ -108,3 +108,7 @@
   opacity: .5; /* in FireFox */ 
   filter: alpha(opacity=50); /* in IE */
 }
+
+body{
+  background-color: black;
+}

@@ -5,7 +5,6 @@ import Login from "./Login";
 import Maze from "./Maze";
 import Error from "./Error";
 import "./App.css";
-import Particle from "./Particle";
 
 function App() {
     const navigate = useNavigate();
@@ -28,7 +27,7 @@ function App() {
                         path="/"
                         element={
                             <>
-                                <Particle />
+                            
                                 <Login />
                             </>
                         }

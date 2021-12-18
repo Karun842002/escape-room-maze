@@ -31,7 +31,6 @@ class LeftButton extends React.Component {
   handleClickOpen = () => {
     if (this.props.click) {
       this.setState({ open: true });
-      this.props.setClick(false);
       var hero = this.props.hero;
       for (var j = hero[1]; j >= 0; j--) {
         if (j === 0) {

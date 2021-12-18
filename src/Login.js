@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
-import Particle from "./Particle";
 
 import { app } from "./firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -57,7 +56,7 @@ export default function BasicTextFields() {
         neonGlory(target3);
     }, []);
     return (
-        <div>
+        <div className="login-container">
             <div className="heading-container">
                 <h1 className="neonhead">THE</h1>
                 <h1 className="neonhead">LABYRINTH</h1>

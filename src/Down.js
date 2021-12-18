@@ -29,7 +29,6 @@ class DownButton extends React.Component {
   handleClickOpen = () => {
     if (this.props.click) {
       this.setState({ open: true });
-      this.props.setClick(false);
       var data = {};
       var user = sessionStorage.getItem("UID");
       var hero = this.props.hero;
@@ -50,7 +49,7 @@ class DownButton extends React.Component {
         .post(
           "/api/get-user-data",
           JSON.stringify({
-            uid: user,
+            uid: sessionStorage.getItem("UID"),
           }),
           {
             headers: {
@@ -59,7 +58,7 @@ class DownButton extends React.Component {
           }
         )
         .then((response) => {
-          data = JSON.parse(response.data);
+          var data = JSON.parse(response.data);
           var key = String(hero[0]) + "-" + String(j);
           var q = queMap.get(key);
           if (data.SOLVED[parseInt(q)]) {
