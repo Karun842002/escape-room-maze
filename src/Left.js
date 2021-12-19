@@ -139,6 +139,7 @@ class LeftButton extends React.Component {
                     PENALTY: data.PENALTY,
                     SOLVED: visited,
                     VISIBILITY: flattened,
+                    SKIPPED: data.SKIPPED,
                     SOURCE: "handle_agree",
                 };
                 this.props.setData(data1, this.props.setSt);
@@ -180,6 +181,8 @@ class LeftButton extends React.Component {
                 var data = JSON.parse(response.data);
                 var visited = data.SOLVED;
                 var p = data.PENALTY + 20;
+                var s = data.SKIPPED;
+                s[parseInt(q)] = true;
                 visited[parseInt(q)] = true;
                 data1 = {
                     USER_ID: sessionStorage.getItem("UID"),
@@ -192,6 +195,7 @@ class LeftButton extends React.Component {
                     PENALTY: p,
                     FINISHED: data.FINISHED,
                     FINISHED_TIME: data.FINISHED_TIME,
+                    SKIPPED: s,
                     SOURCE: "handle_skip",
                 };
                 this.props.setData(data1, this.props.setSt);
@@ -228,6 +232,7 @@ class LeftButton extends React.Component {
                     PENALTY: p,
                     FINISHED: data.FINISHED,
                     FINISHED_TIME: data.FINISHED_TIME,
+                    SKIPPED: data.SKIPPED,
                     SOURCE: "handle_disagree",
                 };
                 this.props.setData(data1, this.props.setSt);

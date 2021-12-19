@@ -41,6 +41,7 @@ def insert_users(transaction, uid):
             'KEY2',
             'PENALTY',
             'SOLVED',
+            'SKIPPED',
             'VISIBILITY'),
         values=[(
             uid,
@@ -51,6 +52,7 @@ def insert_users(transaction, uid):
             False,
             False,
             0,
+            [False]*115,
             [False]*49+[True]*66,
             v
         )]
@@ -61,13 +63,13 @@ def insert_users(transaction, uid):
 def update_user_data(transaction, data):
     row_ct = transaction.execute_update(
         "UPDATE USERS "
-        "SET CLICK=@CLICK, FINISHED=@FINISHED, FINISHED_TIME=@FINISHED_TIME, HERO=@HERO, KEY1=@KEY1, KEY2=@KEY2, PENALTY=@PENALTY, SOLVED=@SOLVED,VISIBILITY=@VISIBILITY "
+        "SET CLICK=@CLICK, FINISHED=@FINISHED, FINISHED_TIME=@FINISHED_TIME, HERO=@HERO, KEY1=@KEY1, KEY2=@KEY2, PENALTY=@PENALTY, SOLVED=@SOLVED, SKIPPED=@SKIPPED, VISIBILITY=@VISIBILITY "
         "WHERE USER_ID=@UID ",
         params={"UID": data["USER_ID"],
                 "CLICK": data["CLICK"],
                 "FINISHED": data["FINISHED"],
                 "FINISHED_TIME": data["FINISHED_TIME"], 'HERO': data["HERO"], "KEY1": data["KEY1"], "KEY2": data["KEY2"], "PENALTY": data["PENALTY"],
-                "SOLVED": data["SOLVED"], "VISIBILITY": data["VISIBILITY"]
+                "SOLVED": data["SOLVED"],"SKIPPED":data["SKIPPED"],"VISIBILITY": data["VISIBILITY"]
                 },
         param_types={"UID": spanner.param_types.STRING,
                      "CLICK": spanner.param_types.BOOL,
@@ -78,6 +80,7 @@ def update_user_data(transaction, data):
                      "KEY2": spanner.param_types.BOOL,
                      "PENALTY": spanner.param_types.INT64,
                      "SOLVED": spanner.param_types.Array(spanner.param_types.BOOL),
+                     "SKIPPED": spanner.param_types.Array(spanner.param_types.BOOL),
                      "VISIBILITY": spanner.param_types.Array(spanner.param_types.BOOL)
                      },
     )
@@ -151,6 +154,7 @@ async def get_user_data(request):
         "KEY2": data[6],
         "PENALTY": data[7],
         "SOLVED": data[8],
-        "VISIBILITY": data[9],
+        "SKIPPED": data[9],
+        "VISIBILITY": data[10],
     }
     return js(json.dumps(data), 200)

@@ -30,34 +30,6 @@ class UpButton extends React.Component {
             this.setState({ open: true });
             var data = {};
             var user = sessionStorage.getItem("UID");
-            axios
-                .post(
-                    "/api/get-user-data",
-                    JSON.stringify({
-                        uid: user,
-                    }),
-                    {
-                        headers: {
-                            "Content-Type": "text/plain",
-                        },
-                    }
-                )
-                .then((response) => {
-                    data = JSON.parse(response.data);
-                    var data1 = {
-                        USER_ID: sessionStorage.getItem("UID"),
-                        CLICK: true,
-                        FINISHED: data.FINISHED,
-                        FINISHED_TIME: data.FINISHED_TIME,
-                        HERO: data.HERO,
-                        KEY1: data.KEY1,
-                        KEY2: data.KEY2,
-                        PENALTY: data.PENALTY,
-                        SOLVED: data.SOLVED,
-                        VISIBILITY: data.VISIBILITY,
-                    };
-                    this.props.setData(data1, this.props.setSt);
-                });
 
             var hero = this.props.hero;
             for (var j = hero[0]; j >= 0; j--) {
@@ -165,6 +137,7 @@ class UpButton extends React.Component {
                     KEY2: data.KEY2,
                     PENALTY: data.PENALTY,
                     SOLVED: visited,
+                    SKIPPED: data.SKIPPED,
                     VISIBILITY: flattened,
                 };
                 this.props.setData(data1, this.props.setSt);
@@ -207,6 +180,8 @@ class UpButton extends React.Component {
                 var data = JSON.parse(response.data);
                 var visited = data.SOLVED;
                 var p = data.PENALTY + 20;
+                var s = data.SKIPPED
+                s[parseInt(q)]=true
                 visited[parseInt(q)] = true;
                 data1 = {
                     USER_ID: sessionStorage.getItem("UID"),
@@ -218,6 +193,7 @@ class UpButton extends React.Component {
                     SOLVED: visited,
                     PENALTY: p,
                     FINISHED: data.FINISHED,
+                    SKIPPED: s,
                     FINISHED_TIME: data.FINISHED_TIME,
                 };
                 this.props.setData(data1, this.props.setSt);
@@ -253,6 +229,7 @@ class UpButton extends React.Component {
                     SOLVED: data.SOLVED,
                     PENALTY: p,
                     FINISHED: data.FINISHED,
+                    SKIPPED: data.SKIPPED,
                     FINISHED_TIME: data.FINISHED_TIME,
                 };
                 this.props.setData(data1, this.props.setSt);

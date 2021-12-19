@@ -149,6 +149,7 @@ class RightButton extends React.Component {
                             SOLVED: visited,
                             VISIBILITY: flattened,
                             FINISHED: true,
+                            SKIPPED: data.SKIPPED,
                             FINISHED_TIME: Date.now(),
                         },
                         this.props.setSt
@@ -165,6 +166,7 @@ class RightButton extends React.Component {
                             SOLVED: visited,
                             VISIBILITY: flattened,
                             FINISHED: data.FINISHED,
+                            SKIPPED: data.SKIPPED,
                             FINISHED_TIME: data.FINISHED_TIME,
                         },
                         this.props.setSt
@@ -181,6 +183,7 @@ class RightButton extends React.Component {
                             SOLVED: visited,
                             VISIBILITY: flattened,
                             FINISHED: data.FINISHED,
+                            SKIPPED: data.SKIPPED,
                             FINISHED_TIME: data.FINISHED_TIME,
                         },
                         this.props.setSt
@@ -224,6 +227,8 @@ class RightButton extends React.Component {
                 var data = JSON.parse(response.data);
                 var visited = data.SOLVED;
                 var p = data.PENALTY + 20;
+                var s = data.SKIPPED
+                s[parseInt(q)] = true;
                 visited[parseInt(q)] = true;
                 if (this.state.pos === 26 && this.props.key1 && this.props.key2)
                     this.props.setData(
@@ -237,6 +242,7 @@ class RightButton extends React.Component {
                             SOLVED: visited,
                             VISIBILITY: flattened,
                             FINISHED: true,
+                            SKIPPED: s,
                             FINISHED_TIME: Date.now(),
                         },
                         this.props.setSt
@@ -253,6 +259,7 @@ class RightButton extends React.Component {
                             SOLVED: visited,
                             VISIBILITY: flattened,
                             FINISHED: data.FINISHED,
+                            SKIPPED: s,
                             FINISHED_TIME: data.FINISHED_TIME,
                         },
                         this.props.setSt
@@ -269,6 +276,7 @@ class RightButton extends React.Component {
                             SOLVED: visited,
                             VISIBILITY: flattened,
                             FINISHED: data.FINISHED,
+                            SKIPPED: s,
                             FINISHED_TIME: data.FINISHED_TIME,
                         },
                         this.props.setSt
@@ -305,6 +313,7 @@ class RightButton extends React.Component {
                     SOLVED: data.SOLVED,
                     PENALTY: p,
                     FINISHED: data.FINISHED,
+                    SKIPPED: data.SKIPPED,
                     FINISHED_TIME: data.FINISHED_TIME,
                 };
                 this.props.setData(data1, this.props.setSt);
