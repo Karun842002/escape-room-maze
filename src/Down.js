@@ -67,9 +67,9 @@ class DownButton extends React.Component {
                         });
                     } else {
                         const db = getFirestore();
-                        console.log(q);
+                        //console.log(q);
                         getDoc(doc(db, "questions", q)).then((doc) => {
-                            console.log(doc.data());
+                            //console.log(doc.data());
                             var dat = doc.data();
                             this.setState(dat);
                             this.setState({ option5: "SKIP", solved: false });

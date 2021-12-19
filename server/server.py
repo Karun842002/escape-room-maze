@@ -154,7 +154,7 @@ async def get_user_data(request):
         "KEY2": data[6],
         "PENALTY": data[7],
         "SOLVED": data[8],
-        "SKIPPED": data[9],
-        "VISIBILITY": data[10],
+        "SKIPPED": data[10],
+        "VISIBILITY": data[9],
     }
     return js(json.dumps(data), 200)

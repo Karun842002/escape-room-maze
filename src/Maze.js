@@ -113,7 +113,7 @@ function Maze() {
                             var v = data.VISIBILITY;
                             var state_arr = [];
                             while (v.length) state_arr.push(v.splice(0, 27));
-
+                            //console.log(data)
                             setVis(state_arr);
                             setHero(data.HERO);
                             setLoading(false);
